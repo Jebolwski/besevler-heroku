@@ -195,7 +195,7 @@ input {
 }
 
 .slidernav {
-  visibility: hidden;
+  display: none;
   width: 100%;
   font-size: 2em;
   height: 100%;
@@ -210,7 +210,7 @@ input {
 .slidernavmargin {
   margin-left: 0;
   z-index: 16510;
-  visibility: visible;
+  display: block;
   transition: 0.3s;
 }
 
