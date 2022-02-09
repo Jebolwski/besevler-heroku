@@ -37,6 +37,7 @@
       </li>
     </ul>
   </div>
+
   <nav>
     <ul class="ul d-flex justify-content-end text-center">
       {% if request.user.is_anonymous %}
@@ -131,21 +132,41 @@
       {% endif %}
     </ul>
   </nav>
+
   <div class="slidernav">
     <ul
-      style="
-        color: black;
-        visibility: visible;
-        margin-left: 50%;
-        transform: translateX(-50%);
-      "
+      style="visibility: visible; margin-left: 50%; transform: translateX(-50%)"
     >
-      <li><a href="{% url 'citizen-home' %}">Anasayfa</a></li>
+      {% if request.user.is_anonymous %}
       <li>
-        <a href="{% url 'inbox-citizen' request.user.id %}">Gelen Kutusu</a>
+        <a
+          href="
+                    {% url 'citizen-home' %}
+                    "
+          >Anasayfa</a
+        >
       </li>
-      <li><a href="#">Kadromuz</a></li>
+      <li><a href="#">İletişim</a></li>
+      <li><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+      <li><a href="{% url 'duyurular' %}">Duyurular</a></li>
+      <li><a href="{% url 'register' %}">Kayıt Ol</a></li>
+      <li><a href="{% url 'login' %}">Giriş Yap</a></li>
+      {% else %}
+      <li>
+        <a
+          href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    "
+          >Anasayfa</a
+        >
+      </li>
       <li><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+      <li><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+      <li><a href="{% url 'duyurular' %}">Duyurular</a></li>
       <li>
         <a href="{% url 'citizen-settings' %}"
           ><i class="fas fa-cogs" alt="Ayarlar" title="Ayarlar"></i
@@ -156,6 +177,7 @@
           ><i class="fas fa-sign-out-alt" title="Çıkış Yap" alt="Çıkış Yap"></i
         ></a>
       </li>
+      {% endif %}
     </ul>
   </div>
 

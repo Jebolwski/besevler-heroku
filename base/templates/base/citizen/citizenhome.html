@@ -29,17 +29,17 @@
         </ul>
     </div>
 
-    <div class="slidernav" style="background-color: transparent;">
+    <div class="slidernav">
         <ul style="visibility: visible;margin-left: 50%;transform: translateX(-50%);">
             {% if request.user.is_anonymous %}
             <li><a href="
                     {% url 'citizen-home' %}
-                    " style="color: white;">Anasayfa</a></li>
-        <li><a href="#" style="color: white;">İletişim</a></li>
-            <li><a href="{% url 'onerivesikayet' %}" style="color: white;">Öneri ve Şikayet</a></li>
-            <li><a href="{% url 'duyurular' %}" style="color: white;">Duyurular</a></li>
-            <li><a href="{% url 'register' %}" style="border: 1px solid white;padding: 2px;border-radius: 2px;color: white;">Kayıt Ol</a></li>
-            <li><a href="{% url 'login' %}" style="border: 1px solid white;padding: 2px;border-radius: 2px;color: white;">Giriş Yap</a></li>
+                    " >Anasayfa</a></li>
+        <li><a href="#" >İletişim</a></li>
+            <li><a href="{% url 'onerivesikayet' %}" >Öneri ve Şikayet</a></li>
+            <li><a href="{% url 'duyurular' %}" >Duyurular</a></li>
+            <li><a href="{% url 'register' %}" >Kayıt Ol</a></li>
+            <li><a href="{% url 'login' %}">Giriş Yap</a></li>
             {% else %}
             <li><a href="
                     {% if user.is_superuser %}
@@ -47,14 +47,14 @@
                     {% else %}
                     {% url 'citizen-home' %}
                     {% endif %}
-                    " style="color: white;">Anasayfa</a></li>
-        <li><a href="{% url 'citizen-contact' %}" style="color: white;">İletişim</a></li>
-            <li><a href="{% url 'onerivesikayet' %}" style="color: white;">Öneri ve Şikayet</a></li>
-            <li><a href="{% url 'duyurular' %}" style="color: white;">Duyurular</a></li>
+                    " >Anasayfa</a></li>
+        <li><a href="{% url 'citizen-contact' %}" >İletişim</a></li>
+            <li><a href="{% url 'onerivesikayet' %}" >Öneri ve Şikayet</a></li>
+            <li><a href="{% url 'duyurular' %}" >Duyurular</a></li>
             <li><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
-            title="Ayarlar" style="color: white;"></i></a></li>
+            title="Ayarlar" ></i></a></li>
             <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
-                alt="Çıkış Yap" style="color: white;"></i></a></li>
+                alt="Çıkış Yap" ></i></a></li>
             {% endif %}
         </ul>
     </div>
@@ -99,16 +99,16 @@
     </nav>
 
     <div class="nature">
-        <span><img src="{% static 'mahresimler/logo.png' %}" style="width: 30px;height: 30px;margin-top: 18%;"/>
+        <span><img src="{% static 'mahresimler/logo.png' %}" style="width: 30px;height: 30px;margin-top: 19%;"/>
             <br><br>
-            <h3>Beşevler Mahallesi Muhtarlığı</h3>
-            <br>
+            <h3 style="font-size:1.5em">Beşevler Mahallesi Muhtarlığı</h3>
             <h5>Resmi Web Sitesi</h5>
-        </span>        
+        </span>    
+        <br>
         <div class="vatandaskayit">
             <p class="text-center h5">Duyurular</p> 
             <br>
-            <i class="fas fa-arrow-down" onclick="duyuru()"></i>
+            <i class="fas fa-arrow-down" style="cursor: pointer;" onclick="duyuru()"></i>
         </div>
     </div>
 

@@ -196,7 +196,7 @@ input {
 
 .slidernav {
   visibility: hidden;
-  width: 42%;
+  width: 100%;
   font-size: 2em;
   height: 100%;
   background-color: rgb(253, 253, 253);
@@ -208,7 +208,8 @@ input {
 }
 
 .slidernavmargin {
-  margin-left: 58%;
+  margin-left: 0;
+  z-index: 16510;
   visibility: visible;
   transition: 0.3s;
 }

@@ -9,25 +9,33 @@
     {% for message in messages %}
     <div class="message alert alert-success text-center col-3">{{message}}</div>
     {% endfor %}
-    <div class="slidernav" style="background-color: transparent;">
+    <div class="slidernav">
         <ul style="visibility: visible;margin-left: 50%;transform: translateX(-50%);">
+            {% if request.user.is_anonymous %}
+            <li><a href="
+                    {% url 'citizen-home' %}
+                    " >Anasayfa</a></li>
+        <li><a href="#" >İletişim</a></li>
+            <li><a href="{% url 'onerivesikayet' %}" >Öneri ve Şikayet</a></li>
+            <li><a href="{% url 'duyurular' %}" >Duyurular</a></li>
+            <li><a href="{% url 'register' %}" >Kayıt Ol</a></li>
+            <li><a href="{% url 'login' %}">Giriş Yap</a></li>
+            {% else %}
             <li><a href="
                     {% if user.is_superuser %}
                     {% url 'admin-home' %}
                     {% else %}
                     {% url 'citizen-home' %}
                     {% endif %}
-                    " style="color: white;">Anasayfa</a></li>
-            <li>
-                <a href="{% url 'inbox-citizen' request.user.id %}" style="color: white;">Gelen Kutusu</a
-        >
-      </li>
-        <li><a href="#" style="color: white;">Kadromuz</a></li>
-            <li><a href="{% url 'citizen-contact' %}" style="color: white;">İletişim</a></li>
-            <li><a href="{% url 'citizen-settings' %}" style="color: white;"><i class="fas fa-cogs" alt="Ayarlar"
-        title="Ayarlar"></i></a></li>
-            <li><a href="{% url 'logout' %}" style="color: white;"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
-        alt="Çıkış Yap"></i></a></li>
+                    " >Anasayfa</a></li>
+        <li><a href="{% url 'citizen-contact' %}" >İletişim</a></li>
+            <li><a href="{% url 'onerivesikayet' %}" >Öneri ve Şikayet</a></li>
+            <li><a href="{% url 'duyurular' %}" >Duyurular</a></li>
+            <li><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
+            title="Ayarlar" ></i></a></li>
+            <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+                alt="Çıkış Yap" ></i></a></li>
+            {% endif %}
         </ul>
     </div>
     <div class="scroll-nav">
