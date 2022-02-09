@@ -50,16 +50,19 @@ urlpatterns = [
      
      
      #!ŞİFRE İŞLEMLERİ
-    path('sifre-sifirla/', authview.PasswordChangeView.as_view(),
+    path('sifre-sifirla/', authview.PasswordChangeView.as_view(template_name="hoodApp/password/passwordreset.html"),
          name="change_password"),
     path('sifre-sifirla-gonderildi/',
-         authview.PasswordResetDoneView.as_view(), name="password_reset_done"),
+         authview.PasswordResetDoneView.as_view(template_name="hoodApp/password/passwordresetdone.html"), name="password_reset_done"),
     path('sifre-sifirla/<uidb64>/<token>/',
          authview.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
-    path('sifre-sifirlandı/', authview.PasswordResetCompleteView.as_view(template_name="hoodApp/password/passwordresetdone.html"),
+    path('sifre-sifirlandı/', authview.PasswordResetCompleteView.as_view(),
          name="password_reset_complete"),
     path('sifre-unuttum/', authview.PasswordResetView.as_view(template_name="hoodApp/password/passwordforgotreset.html"),
          name="password_forgot_reset"),
 
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+
+handler404='base.views.bulunamadi'

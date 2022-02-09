@@ -45,7 +45,7 @@ def CustomLoginView(request):
         else:
             messages.error(request,'Kullanıcı adı veya şifre hatalı.')
 
-    return render(request, 'hoodApp/loginregister/login.html')
+    return render(request, 'base/loginregister/login.html')
 
 
 def RegisterPersonView(request):
@@ -65,7 +65,7 @@ def RegisterPersonView(request):
     context = {
         'form': form
     }
-    return render(request, 'hoodApp/loginregister/register.html', context)
+    return render(request, 'base/loginregister/register.html', context)
 
 
 @login_required(login_url='login')
@@ -82,7 +82,7 @@ def AdminHomeView(request):
         page = request.GET.get('page')
         person = p.get_page(page)
     context = {'persons':person,'persondetails':persons,'myfilter':myfilter}
-    return render(request,'hoodApp/home.html',context)
+    return render(request,'base/home.html',context)
 
 
 #!INBOX
@@ -91,7 +91,7 @@ def AdminHomeView(request):
 def InboxCitizenView(request,user_id):
     messages=Responser.objects.filter(user_id=user_id).order_by('-date')
     context={'text':messages}
-    return render(request,'hoodApp/inbox/inboxcitizen.html',context)
+    return render(request,'base/inbox/inboxcitizen.html',context)
 
 
 @login_required(login_url='login')
@@ -107,7 +107,7 @@ def InboxCitizenDeleteView(request,inbox_id):
 def InboxAdminView(request):
     messages=Contact.objects.all().order_by('-date')
     context={'text':messages}
-    return render(request,'hoodApp/inbox/inboxadmin.html',context)
+    return render(request,'base/inbox/inboxadmin.html',context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Admin'])
@@ -132,7 +132,7 @@ def InboxAdminResponseView(request,inbox_id):
             messages.success(request,"Cevap başarıyla iletildi.")
             return redirect('inbox-admin')
     context={'form':form}
-    return render(request,'hoodApp/inbox/inboxadminresponse.html',context)
+    return render(request,'base/inbox/inboxadminresponse.html',context)
 
 
 
@@ -152,7 +152,7 @@ def AddPersonView(request):
             messages.success(request, 'Kişi başarıyla eklendi.')
             return redirect('admin-home')
     context = {'form': form}
-    return render(request, 'hoodApp/kisi/addperson.html', context)
+    return render(request, 'base/kisi/addperson.html', context)
 
 
 @login_required(login_url='login')
@@ -160,7 +160,7 @@ def AddPersonView(request):
 def LookPersonView(request, pk):
     persons = Person.objects.get(id=pk)
     context = {'persons': persons}
-    return render(request, "hoodApp/kisi/lookperson.html", context)
+    return render(request, "base/kisi/lookperson.html", context)
 
 
 @login_required(login_url='login')
@@ -176,7 +176,7 @@ def EditPersonView(request, pk):
             messages.success(request, 'Kişi başarıyla düzenlendi.')
             return redirect('admin-home')
     context = {'persons': persons, 'form': form}
-    return render(request, 'hoodApp/kisi/editperson.html', context)
+    return render(request, 'base/kisi/editperson.html', context)
 
 
 @login_required(login_url='login')
@@ -188,7 +188,7 @@ def DeletePersonView(request, pk):
         persons.delete()
         messages.success(request, 'Kişi başarıyla silindi.')
         return redirect('admin-home')
-    return render(request, 'hoodApp/kisi/deleteperson.html', context)
+    return render(request, 'base/kisi/deleteperson.html', context)
 
 
 #!DUYURU CRUD
@@ -204,7 +204,7 @@ def Duyurular(request):
         page = request.GET.get('page')
         duyuru = p.get_page(page)
     context = {'duyurular':duyuru}
-    return render(request,'hoodApp/duyuru/duyurular.html',context)
+    return render(request,'base/duyuru/duyurular.html',context)
 
 
 @login_required(login_url='login')
@@ -219,14 +219,14 @@ def DuyuruOlustur(request):
         messages.success(request, 'Duyuru başarıyla oluşturuldu.')
         return redirect('duyurular')
         
-    return render(request, 'hoodApp/duyuru/duyuru-ekle.html')
+    return render(request, 'base/duyuru/duyuru-ekle.html')
 
 
 
 def DuyuruDetay(request, pk):
     duyuru = Announcement.objects.get(id=pk)
     context = {'duyuru': duyuru}
-    return render(request, "hoodApp/duyuru/duyuru-detay.html", context)
+    return render(request, "base/duyuru/duyuru-detay.html", context)
 
 
 @login_required(login_url='login')
@@ -234,7 +234,6 @@ def DuyuruDetay(request, pk):
 def DuyuruDuzenle(request, pk):
     duyuru = Announcement.objects.get(id=pk)
     context={'duyuru':duyuru}
-    print(request.GET)
     if request.method == 'POST':
             duyuru.title=request.POST['title']
             duyuru.desc=request.POST['desc']
@@ -246,7 +245,7 @@ def DuyuruDuzenle(request, pk):
             duyuru.save()
             messages.success(request, 'Duyuru başarıyla düzenlendi.')
             return redirect('duyurular')
-    return render(request, 'hoodApp/duyuru/duyuru-duzenle.html',context)
+    return render(request, 'base/duyuru/duyuru-duzenle.html',context)
 
 
 @login_required(login_url='login')
@@ -258,7 +257,7 @@ def DuyuruSil(request, pk):
         duyuru.delete()
         messages.success(request, 'Duyuru başarıyla silindi.')
         return redirect('duyurular')
-    return render(request, 'hoodApp/duyuru/duyuru-sil.html', context)
+    return render(request, 'base/duyuru/duyuru-sil.html', context)
 
 
 #!ÖNERİ VE ŞİKAYET
@@ -266,23 +265,21 @@ def OneriVeSikayet(request):
     form = IstekOneriForm()
     if request.method=='POST':
         data = request.POST.copy()
-        print(data)
         form=IstekOneriForm(data=data,files=request.FILES)
-        print(data)
         if form.is_valid():
             form.save()
             messages.success(request,"Mesaj başarıyla iletilmiştir.")
             return redirect('citizen-home')
     istek=IstekOneri.objects.all().order_by('-update_time')
     context={'istek':istek,'form':form}
-    return render(request,'hoodApp/oneri/oneri.html',context)
+    return render(request,'base/oneri/oneri.html',context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Admin'])
 def OneriVeSikayetDetay(request,pk):
     istek=IstekOneri.objects.get(id=pk)
     context={'istek':istek}
-    return render(request,'hoodApp/oneri/oneridetay.html',context)
+    return render(request,'base/oneri/oneridetay.html',context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Citizen', 'Admin'])
@@ -299,7 +296,7 @@ def CitizenHomeView(request):
     page = request.GET.get('page')
     duyuru = p.get_page(page)
     context = {'duyurular':duyuru}
-    return render(request, 'hoodApp/citizen/citizenhome.html', context)
+    return render(request, 'base/citizen/citizenhome.html', context)
 
 
 def CitizenContactView(request):
@@ -314,10 +311,15 @@ def CitizenContactView(request):
             messages.success(request,"Mesajınız başarıyla iletildi.")
             return redirect('citizen-contact')
 
-    return render(request, 'hoodApp/citizen/citizencontact.html', context={'form': form})
+    return render(request, 'base/citizen/citizencontact.html', context={'form': form})
 
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['Citizen', 'Admin'])
 def CitizenSettingsView(request):
-    return render(request, 'hoodApp/citizen/settings.html')
+    return render(request, 'base/citizen/settings.html')
+
+
+
+def bulunamadi(request,exception):
+    return render('base/404.html')

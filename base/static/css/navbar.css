@@ -33,6 +33,7 @@ html {
 
 nav {
   background-color: rgb(58, 58, 58);
+  max-height: 37px;
 }
 
 ul {
@@ -247,6 +248,14 @@ input {
   z-index: 10;
 }
 
+.passwordsvg {
+  width: 34%;
+  background-color: red;
+  height: 38%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
 table i {
   color: rgb(58, 58, 58);
 }
@@ -286,6 +295,9 @@ iframe {
   .welcomeuser {
     visibility: visible;
   }
+  .slidernav {
+    font-size: 16px;
+  }
 }
 
 @media only screen and (max-width: 650px) {
@@ -298,5 +310,8 @@ iframe {
     float: left;
     margin-left: 15vw;
     width: 70vw;
+  }
+  .slidernav ul li {
+    font-size: 12px;
   }
 }

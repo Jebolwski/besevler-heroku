@@ -11,7 +11,7 @@ def allowed_users(allowed_roles=[]):
             if group in allowed_roles:
                 return view_func(request, *args, **kwargs)
             else:
-                return render(request,'hoodApp/bulunamadi.html')
+                return render(request,'hoodApp/404.html')
             return view_func(request, *args, **kwargs)
         return wrapper_func
     return decorator
