@@ -1,0 +1,201 @@
+{%extends 'base/main.html' %} {% block content %}
+<title>Anasayfa | BMM</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+
+</head>
+
+<body>
+    {% for message in messages %}
+    <div class="message alert alert-success text-center col-3">{{message}}</div>
+    {% endfor %}
+    <div class="slidernav" style="background-color: transparent;">
+        <ul style="visibility: visible;margin-left: 50%;transform: translateX(-50%);">
+            <li><a href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    " style="color: white;">Anasayfa</a></li>
+            <li>
+                <a href="{% url 'inbox-citizen' request.user.id %}" style="color: white;">Gelen Kutusu</a
+        >
+      </li>
+        <li><a href="#" style="color: white;">Kadromuz</a></li>
+            <li><a href="{% url 'citizen-contact' %}" style="color: white;">İletişim</a></li>
+            <li><a href="{% url 'citizen-settings' %}" style="color: white;"><i class="fas fa-cogs" alt="Ayarlar"
+        title="Ayarlar"></i></a></li>
+            <li><a href="{% url 'logout' %}" style="color: white;"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+        alt="Çıkış Yap"></i></a></li>
+        </ul>
+    </div>
+    <div class="scroll-nav">
+        <ul class="ul d-flex justify-content-end text-center">
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;"><img src="{% static 'mahresimler/logo.png' %}" style="width: 18px;height: 18px"/></p>
+            <li class="li">
+                <i class="fas fa-arrow-up" style="cursor: pointer;display: block;visibility: visible;margin-top: 6px;"></i>
+            </li>
+        </ul>
+    </div>
+    <nav style="position: absolute;width: 100%;background: transparent;">  
+        <ul class="ul d-flex justify-content-end text-center">
+            
+            {% if request.user.is_anonymous %}
+             <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;">
+                   Hoşgeldiniz</p>
+            <li class="li"><a href="<li class="li"><a href="
+                    {% url 'citizen-home' %}
+                    ">Anasayfa</a></li>
+            <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li class="li"><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+            <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
+            <li class="li"><a href="{% url 'register' %}">Kayıt Ol</a></li>
+            <li class="li"><a href="{% url 'login' %}">Giriş Yap</a></li>
+            <li><i class="fas fa-bars"></i></li>
+
+                {% else %}
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;">Hoşgeldin , {{request.user}}</p>
+            <li class="li"><a href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    ">Anasayfa</a></li>
+            <li class="li"><a href="{% url 'inbox-admin' %}">Gelen Kutusu</a></li>
+            <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
+            <li class="li"><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+            <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li class="li"><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
+            title="Ayarlar"></i></a></li>
+            <li class="li"><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+                alt="Çıkış Yap"></i></a></li>
+            <li><i class="fas fa-bars"></i></li>
+
+                {% endif %}
+        </ul>
+    </nav>
+
+
+    <div class="nature">
+        <span>
+            <img src="{% static 'mahresimler/logo.png' %}" style="width: 30px;height: 30px;margin-top: 18%;margin-bottom: 15px;"/><h3 style="margin-bottom: 25px;">Beşevler Mahallesi Muhtarlığı</h3>
+        <p style="font-size: 20px;;">Yönetici Sayfası</p>
+        </span>       
+        <div class="vatandaskayit">
+            <p class="text-center h5">Vatandaş Kayıt</p> 
+            <br>
+            <i class="fas fa-arrow-down" onclick="kayit()"></i>
+        </div>
+        
+    </div>
+    
+
+
+    <form method="GET" id="kayit">
+        <div class="container-fluid">
+            <table style="margin-left: 50%;transform: translateX(-50%);margin-top: 60px;">
+                <tr>
+                    <td><i class="fas fa-filter" id="filtre"></i></td>
+                    <td>{{myfilter.form.name}}</td>
+                    <td>
+                        <table class="filtretablo">
+                            <tr>
+                                <td>{{myfilter.form.job}}</td>
+                                <td>{{myfilter.form.tcno}}</td>
+                                <td>{{myfilter.form.gender}}</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td><input type="submit" value="Ara" class="btn btn-outline-dark btn-sm"></td>
+                    <td height="60"><a href="{% url 'add' %}"><i class="fas fa-user-plus" style="margin-left: 6px;"></i></a></td>
+                </tr>
+            </table>
+            <br> {% if persons %}
+            <table class="table table-striped table-hover rounded col-5 offset-0">
+                <thead class="text-center">
+                    <th>TC No</th>
+                    <th>Ad</th>
+                    <th>Cinsiyet</th>
+                    <th>İş</th>
+                    <th>Doğum Tarihi</th>
+                    <th>Bak</th>
+                    <th>Düzenle</th>
+                    <th>Sil</th>
+                </thead>
+
+
+                {% for person in persons %}
+                <tr class="text-center">
+                    <td>{{person.tcno}}</td>
+                    <td>{{person.name_surname}}</td>
+                    <td>{{person.gender}}</td>
+                    <td>{{person.job}}</td>
+                    <td>{{person.birth_date}}</td>
+                    <td><a href="{% url 'lookperson' person.id %}"><i class="far fa-eye"></i></a></td>
+                    <td><a href="{% url 'editperson' person.id %}"><i class="fas fa-user-edit"></i></a></td>
+                    <td><a href="{% url 'deleteperson' person.id %}"><i class="fas fa-user-minus"></i></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <p style="padding-left: 40px;font-size: 17px;">
+        {% if persons.has_previous%}
+        <a href="?page=1" style="color: black;"><i class="fas fa-angle-double-left"></i></a>
+        {% endif %}
+        {% if persons.has_previous%}
+        <a href="?page={{persons.previous_page_number}}" style="color: black;"><i class="fas fa-chevron-left"></i></a> 
+        {% else %}
+        <i class="fas fa-chevron-left disabled" style="color: gray;">
+        </i> 
+        {% endif %} 
+        
+        {{persons.number}} de {{persons.paginator.num_pages}} 
+        
+        {% if persons.has_next %}
+        <a href="?page={{persons.next_page_number}}" style="color: black;"><i class="fas fa-chevron-right"></i></a>
+        <a href="?page={{persons.paginator.num_pages}}" style="color: black;"><i class="fas fa-angle-double-right"></i></a>
+        {% else %}
+        <i class="fas fa-chevron-right" style="color: gray;"></i> 
+        {% endif %}
+
+    </p>
+            {% else %}
+            <h4 class="text-center mt-3">Kaydedilmiş Kişi Yok.</h4>
+            {% endif %}
+
+        </div>
+    </form>
+    <script>
+        let height=window.screen.height
+        function kayit(){
+            window.scrollTo(0,height);
+        }
+        let slider = document.querySelector(".slidernav");
+        let icon = document.querySelector(".fa-bars");
+        icon.addEventListener("click", () => {
+        slider.classList.toggle("slidernavmargin");
+        });
+        window.onscroll = function() {
+        scrollfunc();
+        };
+        let scrollnav = document.querySelector(".scroll-nav");
+        let scrolltop = document.querySelector(".fa-arrow-up");
+
+        function scrollfunc() {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+             scrollnav.style.top = "0";
+            } else {
+        scrollnav.style.top = "-50px";
+            }
+            scrolltop.addEventListener("click", () => {
+                window.scrollTo(0, 0);
+            });
+}
+let filtre = document.querySelector("#filtre");
+let filtretablo = document.querySelector(".filtretablo");
+filtre.addEventListener("click", () => {
+    filtretablo.classList.toggle("displayed");
+});
+    </script>
+    {% endblock content %}

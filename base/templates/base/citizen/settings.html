@@ -1,0 +1,115 @@
+{% extends 'base/main.html' %} {% block content%} {% load static %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+
+<title>Ayarlar | BMM</title>
+</head>
+<div class="scroll-nav">
+        <ul class="ul d-flex justify-content-end text-center">
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;"><img src="{% static 'mahresimler/logo.png' %}" style="width: 18px;height: 18px;margin-top: 18%;"/></p>
+            <li class="li">
+                <i class="fas fa-arrow-up" style="cursor: pointer;display: block;visibility: visible;margin-top: 6px;"></i>
+            </li>
+        </ul>
+    </div>
+<div class="slidernav">
+    <ul style="color: black;visibility: visible;margin-left: 50%;transform: translateX(-50%)">
+        <li><a href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    ">Anasayfa</a></li>
+        <li><a href="{% url 'inbox-citizen' request.user.id %}">Gelen Kutusu</a></li>
+        <li><a href="#">Kadromuz</a></li>
+        <li><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+        <li><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
+        title="Ayarlar"></i></a></li>
+        <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+        alt="Çıkış Yap"></i></a></li>
+    </ul>
+</div>
+
+<nav>
+        <ul class="ul d-flex justify-content-end text-center">
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;">Hoşgeldin , {{request.user}}</p>
+            <li class="li"><a href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    " >Anasayfa</a></li>
+            <li class="li"><a href="{% url 'inbox-admin' %}">Gelen Kutusu</a></li>
+            <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
+            <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li class="li"><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
+            title="Ayarlar"></i></a></li>
+            <li class="li"><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+                alt="Çıkış Yap"></i></a></li>
+            <li><i class="fas fa-bars"></i></li>
+        </ul>
+
+    </nav>
+<nav style="background-color: rgb(253, 253, 253);">
+    <div class="nav nav-tabs" style="margin-left: 50%;transform: translateX(-50%);background-color: rgb(253, 253, 253);" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" style="color: black;">Profil</button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" style="color: black;">Şifre ve gizlilik</button>
+    </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <table style="width: 50vw;height:60vh;margin-left: 50%;transform: translateX(-50%);">
+            <tbody>
+                <tr>
+                    <td rowspan=4 style="width: 40%;text-align: center;"><i class="far fa-user fa-4x"></i></td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Ad : {{request.user.username}}</h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Email : {{request.user.email}}</h6>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <h6>Katılma Tarihi : {{request.user.date_joined}}</h6>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <h5 class="text-center mt-5">Şifrenizi mi değiştirmek istiyorsunuz ?</h5>
+        <a href="{% url 'change_password' %}"><button class="btn btn-outline-dark col-2 offset-5 mt-4">Şifre
+                Değiştir</button></a>
+    </div>
+</div>
+<script>
+        let slider = document.querySelector(".slidernav");
+        let icon = document.querySelector(".fa-bars");
+        icon.addEventListener("click", () => {
+        slider.classList.toggle("slidernavmargin");
+        });
+        window.onscroll = function() {
+        scrollfunc();
+        };
+        let scrollnav = document.querySelector(".scroll-nav");
+        let scrolltop = document.querySelector(".fa-arrow-up");
+
+        function scrollfunc() {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+             scrollnav.style.top = "0";
+            } else {
+        scrollnav.style.top = "-50px";
+            }
+            scrolltop.addEventListener("click", () => {
+                window.scrollTo(0, 0);
+            });
+}
+    </script>
+{% endblock content%}

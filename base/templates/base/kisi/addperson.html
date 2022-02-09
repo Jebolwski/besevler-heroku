@@ -1,0 +1,148 @@
+{%extends 'base/main.html' %} {% block content %}
+<title>Kişi Ekle | BMM</title>
+{% load static %}
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    .container-fluid {
+        height: 100vh;
+        padding: 0;
+    }
+    
+    .form {
+        max-width: 100%;
+    }
+    
+    h3 {
+        animation: heading 0.8s ease;
+        text-shadow: 1px 1px 10px rgb(128, 128, 128);
+    }
+    
+    .btn {
+        margin-left: 50%;
+        transform: translateX(-50%);
+        margin-top: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    select {
+        width: 100%;
+        border-radius: 4px;
+        text-align: center;
+        border: none;
+        padding: 3px 3px;
+    }
+    
+    nav {
+        background-color: rgb(58, 58, 58);
+        z-index: 110;
+    }
+    
+    ul {
+        list-style: none;
+    }
+    
+    li {
+        padding-right: 5px;
+        padding-left: 5px;
+        margin-left: 25px;
+        margin-right: 25px;
+        transition: 0.4s;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 18px;
+        color: white;
+    }
+    
+    li a {
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        transition: 0.3s;
+        font-size: 17px;
+    }
+    
+    li a:hover {
+        color: white;
+        text-decoration: underline;
+        transition: 0.3s;
+    }
+</style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav>
+            <ul class="d-flex justify-content-end text-center">
+                <li class="welcomeuser" style="position: absolute;left: 0;color: white;"><a href="{% url 'admin-home' %}">Anasayfa</a></li>
+                <li><img src="{% static 'mahresimler/logo.png' %}" style="width: 18px;height: 18px;"/></li>
+            </ul>
+        </nav>
+        <h4 class="text-center mt-5">Kişi Ekle</h4>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <table class="table table-hover text-center mt-5 col-11">
+                <tr>
+                    <td>Ad Soyad</td>
+                    <td>{{form.name_surname}}</td>
+                    <td>Cinsiyet</td>
+                    <td>{{form.gender}}</td>
+                    <td>TC Numarası</td>
+                    <td>{{form.tcno}}</td>
+                </tr>
+                <tr>
+                    <td>Doğum Tarihi</td>
+                    <td>{{form.birth_date}}</td>
+                    <td>İş</td>
+                    <td>{{form.job}}</td>
+                    <td>Doğum Yeri</td>
+                    <td>{{form.birth_city}}</td>
+                </tr>
+                <tr>
+                    <td>Anne</td>
+                    <td>{{form.mother}}</td>
+                    <td>Baba</td>
+                    <td>{{form.father}}</td>
+                    <td>Oğlu</td>
+                    <td>{{form.son}}</td>
+
+                </tr>
+                <tr>
+                    <td>Kızı</td>
+                    <td>{{form.daughter}}</td>
+                    <td>Adres</td>
+                    <td>{{form.living_city}}</td>
+                    <td>Email</td>
+                    <td>{{form.email}}</td>
+                </tr>
+            </table>
+            <input type="submit" value="Ekle" class="btn btn-outline-dark d-grid justify-content-center">
+        </form>
+    </div>
+    <script>
+        let slider = document.querySelector(".slidernav");
+        let icon = document.querySelector(".fa-bars");
+        icon.addEventListener("click", () => {
+        slider.classList.toggle("slidernavmargin");
+        });
+        window.onscroll = function() {
+        scrollfunc();
+        };
+        let scrollnav = document.querySelector(".scroll-nav");
+        let scrolltop = document.querySelector(".fa-arrow-up");
+
+        function scrollfunc() {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+             scrollnav.style.top = "0";
+            } else {
+        scrollnav.style.top = "-50px";
+            }
+            scrolltop.addEventListener("click", () => {
+                window.scrollTo(0, 0);
+            });
+}
+    </script>
+
+    {% endblock content %}

@@ -1,0 +1,175 @@
+{% extends 'base/main.html' %} {% block content%} {% load static %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+
+<title>İletişim | BMM</title>
+</head>
+
+<body>
+    {% for message in messages %}
+    <div class="message alert alert-success text-center col-3">{{message}}</div>
+    {% endfor %}
+<div class="slidernav">
+    <ul style="color: black;visibility: visible;margin-left: 50%;transform: translateX(-50%)">
+        <li><a href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    ">Anasayfa</a></li>
+        <li>
+            <a href="{% url 'inbox-citizen' request.user.id %}">Gelen Kutusu</a
+        >
+      </li>
+        <li><a href="#">Kadromuz</a></li>
+        <li><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+        <li><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
+        title="Ayarlar"></i></a></li>
+        <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+        alt="Çıkış Yap"></i></a></li>
+    </ul>
+</div>
+<div class="scroll-nav">
+        <ul class="ul d-flex justify-content-end text-center">
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;"><img src="{% static 'mahresimler/logo.png' %}" style="width: 18px;height: 18px;margin-top: 18%;"/></p>
+            <li class="li">
+                <i class="fas fa-arrow-up" style="cursor: pointer;display: block;visibility: visible;margin-top: 6px;"></i>
+            </li>
+        </ul>
+    </div>
+<nav>  
+       <ul class="ul d-flex justify-content-end text-center">
+            
+            {% if request.user.is_anonymous %}
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;z-index: 1;">
+                   Hoşgeldiniz</p>
+            <li class="li"><a href="<li class="li"><a href="
+                    {% url 'citizen-home' %}
+                    ">Anasayfa</a></li>
+            <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li class="li"><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+            <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
+            <li class="li"><a href="{% url 'register' %}" style="border: 1px solid white;padding: 2px;border-radius: 2px;">Kayıt Ol</a></li>
+            <li class="li"><a href="{% url 'login' %}" style="outline: 1px solid white;padding: 2px;border-radius: 2px;">Giriş Yap</a></li>
+            <li><i class="fas fa-bars"></i></li>
+
+                {% else %}
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;">Hoşgeldin , {{request.user}}</p>
+            <li class="li"><a href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    ">Anasayfa</a></li>
+            <li class="li"><a href="{% url 'inbox-citizen' request.user.id %}">Gelen Kutusu</a></li>
+            <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
+            <li class="li"><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+            <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li class="li"><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
+            title="Ayarlar"></i></a></li>
+            <li class="li"><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+                alt="Çıkış Yap"></i></a></li>
+            <li><i class="fas fa-bars"></i></li>
+
+                {% endif %}
+        </ul>
+    </nav>
+<div class="contain">
+    <div class="children">
+        <table align="center">
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <h4 style="text-align: center;">Bizimle İletişime Geçin</h4>
+            </td>
+
+        </tr>
+        <tr>
+            <td style="width: 50px;height: 60px;"><i class="fas fa-phone-alt pr-2"></i></td>
+            <td>
+                <h6 class="ml-2">(0224) 451 70 70</h6>
+            </td>
+        </tr>
+        <tr style="height: 60px;">
+            <td><i class="fas fa-mobile-alt"></i></td>
+            <td>
+                <h6 class="ml-2">0535 243 50 35</h6>
+            </td>
+        </tr>
+        <tr style="height: 60px;">
+            <td><i class="far fa-envelope"></i></td>
+            <td>
+                <h6 class="ml-2">besevlermah.muh@gmail.com</h6>
+            </td>
+        </tr>
+    </table>
+</div>
+    <div class="children"><iframe style="margin-top: 30px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2063
+        .151872891203!2d28.96899926735614!3d40.21092024873608!3m2!1i1024!2i768!4f13
+        .1!3m3!1m2!1s0x0%3A0xe679dd0b53b93d2!2sBesevler%20Mahallesi%20Muhtarligi!5e
+        0!3m2!1sen!2str!4v1640965029191!5m2!1sen!2str" allowfullscreen="true" loading="lazy">
+    </iframe></div>
+</div>
+
+
+
+
+<div style="margin-top: 50px;">
+    <form method="POST">
+        {% csrf_token %}
+        <table class="table">
+            <tr class="row">
+                <td class="col">
+                    <label class="pb-1" style="margin-left: 10%;">Ad Soyad</label>
+                    <div style="width: 80%;margin-left: 10%;">{{form.fullname}}</div>
+                </td>
+                <td class="col">
+                    <label class="pb-1" style="margin-left: 10%;">Email</label>
+                    <div style="width: 80%;margin-left: 10%;">{{form.email}}</div>
+                </td>
+                <td class="col">
+                    <label class="pb-1" style="margin-left: 10%;">Telefon No</label>
+                    <div style="width: 80%;margin-left: 10%;">{{form.phone}}</div>
+                </td>
+
+            </tr>
+            <tr colspan="2" class="row">
+                <td class="col">
+                    <label class="pb-1" style="margin-left: 10%;">Açıklama</label>
+                    <div style="width: 80%;margin-left: 10%;">{{form.desc}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="İlet" class="button btn-outline-dark col-2 offset-5"></td>
+            </tr>
+        </table>
+    </form>
+
+
+</div>
+<script>
+        let slider = document.querySelector(".slidernav");
+        let icon = document.querySelector(".fa-bars");
+        icon.addEventListener("click", () => {
+        slider.classList.toggle("slidernavmargin");
+        });
+        window.onscroll = function() {
+        scrollfunc();
+        };
+        let scrollnav = document.querySelector(".scroll-nav");
+        let scrolltop = document.querySelector(".fa-arrow-up");
+
+        function scrollfunc() {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+             scrollnav.style.top = "0";
+            } else {
+        scrollnav.style.top = "-50px";
+            }
+            scrolltop.addEventListener("click", () => {
+                window.scrollTo(0, 0);
+            });
+}
+    </script>
+
+
+{% endblock content%}

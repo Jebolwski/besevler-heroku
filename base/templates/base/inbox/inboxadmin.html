@@ -1,0 +1,239 @@
+{% extends 'base/main.html' %} {% block content%}
+<title>Gelen Kutusu | BMM</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+
+<body>
+  {% for message in messages %}
+  <div class="message alert alert-success text-center col-3">{{message}}</div>
+  {% endfor %}
+  <div class="scroll-nav">
+    <ul class="ul d-flex justify-content-end text-center">
+      <p
+        class="welcomeuser"
+        style="
+          position: absolute;
+          left: 30px;
+          top: 5px;
+          font-size: 18px;
+          color: white;
+        "
+      >
+        <img
+          src="{% static 'mahresimler/logo.png' %}"
+          style="width: 18px; height: 18px; margin-top: 18%"
+        />
+      </p>
+      <li class="li">
+        <i
+          class="fas fa-arrow-up"
+          style="
+            cursor: pointer;
+            display: block;
+            visibility: visible;
+            margin-top: 6px;
+          "
+        ></i>
+      </li>
+    </ul>
+  </div>
+  <nav>
+    <ul class="ul d-flex justify-content-end text-center">
+      {% if request.user.is_anonymous %}
+      <p
+        class="welcomeuser"
+        style="
+          position: absolute;
+          left: 30px;
+          top: 5px;
+          font-size: 18px;
+          color: white;
+          z-index: 1;
+        "
+      >
+        Hoşgeldiniz
+      </p>
+      <li class="li"><a href="</li>
+      <li class="li">
+        <a
+          href="
+                    {% url 'citizen-home' %}
+                    "
+          >Anasayfa</a
+        >
+      </li>
+      <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+      <li class="li">
+        <a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a>
+      </li>
+      <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
+      <li class="li">
+        <a
+          href="{% url 'register' %}"
+          style="border: 1px solid white; padding: 2px; border-radius: 2px"
+          >Kayıt Ol</a
+        >
+      </li>
+      <li class="li">
+        <a
+          href="{% url 'login' %}"
+          style="outline: 1px solid white; padding: 2px; border-radius: 2px"
+          >Giriş Yap</a
+        >
+      </li>
+      <li><i class="fas fa-bars"></i></li>
+
+      {% else %}
+      <p
+        class="welcomeuser"
+        style="
+          position: absolute;
+          left: 30px;
+          top: 5px;
+          font-size: 18px;
+          color: white;
+        "
+      >
+        Hoşgeldin , {{request.user}}
+      </p>
+      <li class="li">
+        <a
+          href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    "
+          >Anasayfa</a
+        >
+      </li>
+      <li class="li">
+        <a href="{% url 'inbox-citizen' request.user.id %}">Gelen Kutusu</a>
+      </li>
+      <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
+      <li class="li">
+        <a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a>
+      </li>
+      <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+      <li class="li">
+        <a href="{% url 'citizen-settings' %}"
+          ><i class="fas fa-cogs" alt="Ayarlar" title="Ayarlar"></i
+        ></a>
+      </li>
+      <li class="li">
+        <a href="{% url 'logout' %}"
+          ><i class="fas fa-sign-out-alt" title="Çıkış Yap" alt="Çıkış Yap"></i
+        ></a>
+      </li>
+      <li><i class="fas fa-bars"></i></li>
+
+      {% endif %}
+    </ul>
+  </nav>
+  <div class="slidernav">
+    <ul
+      style="
+        color: black;
+        visibility: visible;
+        margin-left: 50%;
+        transform: translateX(-50%);
+      "
+    >
+      <li><a href="{% url 'citizen-home' %}">Anasayfa</a></li>
+      <li>
+        <a href="{% url 'inbox-citizen' request.user.id %}">Gelen Kutusu</a>
+      </li>
+      <li><a href="#">Kadromuz</a></li>
+      <li><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+      <li>
+        <a href="{% url 'citizen-settings' %}"
+          ><i class="fas fa-cogs" alt="Ayarlar" title="Ayarlar"></i
+        ></a>
+      </li>
+      <li>
+        <a href="{% url 'logout' %}"
+          ><i class="fas fa-sign-out-alt" title="Çıkış Yap" alt="Çıkış Yap"></i
+        ></a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container-fluid">
+    {% if text%}
+    <table
+      class="table table-striped table-hover rounded text-center"
+      style="margin-top: 60px"
+    >
+      <thead>
+        <th>Kullanıcı</th>
+        <th>Ad Soyad</th>
+        <th>Email</th>
+        <th>Telefon No</th>
+        <th>Açıklama</th>
+        <th>Gönderilme Tarihi</th>
+        <th>Cevapla</th>
+        <th>Sil</th>
+      </thead>
+
+      {% for text in text %}
+      <tr>
+        <td>
+          {% if text.user %} {{text.user}}{% else %}Kayıtsız Kullanıcı {%endif%}
+        </td>
+        <td>{{text.fullname}}</td>
+        <td>{{text.email}}</td>
+        <td>{{text.phone}}</td>
+        <td>{{text.desc}}</td>
+        <td>{{text.date}}</td>
+        {% if text.user.id %}
+        <td>
+          <a href="{% url 'inbox-admin-response' text.user.id %}"
+            ><i class="fas fa-reply" style="color: black"></i
+          ></a>
+        </td>
+        {% else %}
+        <td>
+          <i class="fas fa-reply" style="color: gray"></i>
+        </td>
+        {% endif %}
+        <td>
+          <a href="{% url 'inbox-admin-delete' text.id %}"
+            ><i class="fas fa-trash-alt" style="color: black"></i
+          ></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <h4 class="text-center mt-5">Gelen Kutusu Boş...</h4>
+    {% endif %}
+  </div>
+  <script>
+    let slider = document.querySelector(".slidernav");
+    let icon = document.querySelector(".fa-bars");
+    icon.addEventListener("click", () => {
+      slider.classList.toggle("slidernavmargin");
+    });
+    window.onscroll = function () {
+      scrollfunc();
+    };
+    let scrollnav = document.querySelector(".scroll-nav");
+    let scrolltop = document.querySelector(".fa-arrow-up");
+
+    function scrollfunc() {
+      if (
+        document.body.scrollTop > 40 ||
+        document.documentElement.scrollTop > 40
+      ) {
+        scrollnav.style.top = "0";
+      } else {
+        scrollnav.style.top = "-50px";
+      }
+      scrolltop.addEventListener("click", () => {
+        window.scrollTo(0, 0);
+      });
+    }
+  </script>
+  {% endblock content %}
+</body>

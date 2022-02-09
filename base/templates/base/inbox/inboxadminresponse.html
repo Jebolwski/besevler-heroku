@@ -1,0 +1,119 @@
+{% extends 'base/main.html' %} {% block content%}
+<title>Mesaj Cevaplama | BMM</title>
+
+<style>
+    body {
+        overflow-x: hidden;
+    }
+    
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        background-color: rgb(253, 253, 253);
+    }
+    
+    nav {
+        background-color: rgb(58, 58, 58);
+        z-index: 110;
+    }
+    
+    ul {
+        list-style: none;
+    }
+    
+    li {
+        padding-right: 5px;
+        padding-left: 5px;
+        margin-left: 25px;
+        margin-right: 25px;
+        transition: 0.4s;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 18px;
+        color: white;
+    }
+    
+    li a {
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        transition: 0.3s;
+        font-size: 17px;
+    }
+    
+    li a:hover {
+        color: white;
+        text-decoration: underline;
+        transition: 0.3s;
+    }
+    
+    input {
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    p {
+        width: 60vw;
+        margin-left: 20vw;
+    }
+    
+    textarea {
+        width: 60%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        border-radius: 5px;
+        background-color: rgb(253, 253, 253);
+    }
+    
+    label {
+        margin-left: 30%;
+        transform: translateX(-50%);
+    }
+</style>
+</head>
+
+<body>
+    <form method="POST">
+        <nav>
+            <ul class="d-flex justify-content-end text-center">
+                <li class="welcomeuser" style="position: absolute;left: 0;color: white;"><a href="{% url 'citizen-home' %}">Anasayfa</a></li>
+                <li>Kişi Cevapla</li>
+            </ul>
+        </nav>
+        {% csrf_token %}
+        <ul>
+            <li style="color: black;"><label for="resp">Açıklama</label></li>
+            <li>{{form.resp}}</li>
+        </ul>
+
+        <input type="submit" value="Cevapla" class="btn btn-outline-dark mt-3" />
+    </form>
+
+<script>
+        let slider = document.querySelector(".slidernav");
+        let icon = document.querySelector(".fa-bars");
+        icon.addEventListener("click", () => {
+        slider.classList.toggle("slidernavmargin");
+        });
+        window.onscroll = function() {
+        scrollfunc();
+        };
+        let scrollnav = document.querySelector(".scroll-nav");
+        let scrolltop = document.querySelector(".fa-arrow-up");
+
+        function scrollfunc() {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+             scrollnav.style.top = "0";
+            } else {
+        scrollnav.style.top = "-50px";
+            }
+            scrolltop.addEventListener("click", () => {
+                window.scrollTo(0, 0);
+            });
+}
+    </script>
+
+    {% endblock content%}
