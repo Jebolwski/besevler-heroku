@@ -1,0 +1,90 @@
+{% extends 'hoodApp/main.html' %} {% block content%}
+<style>
+  input {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+</style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+
+<title>Duyuru Ekle | BMM</title>
+
+<body>
+  {% for message in messages %}
+  <div class="message alert alert-success text-center col-3">{{message}}</div>
+  {% endfor %}
+  <nav>
+    <ul class="d-flex justify-content-end text-center">
+      <p
+        class="geri"
+        style="
+          position: absolute;
+          left: 30px;
+          top: 5px;
+          font-size: 18px;
+          color: white;
+        "
+      >
+        <a
+          href="{% url 'duyurular' %}"
+          style="color: white; text-decoration: none; display: block"
+          >Geri Dön</a
+        >
+      </p>
+      <li class="li">Duyuru Ekle</li>
+    </ul>
+  </nav>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="col-6 offset-3">
+      <label for="title" style="margin-top: 30px">Başlık</label>
+      <div class="row">
+        <input type="text" name="title" class="form-control" />
+      </div>
+      <label for="desc" style="margin-top: 30px">Açıklama</label>
+      <div class="row">
+        <input type="text" name="desc" class="form-control" />
+      </div>
+      <label for="file" style="margin-top: 30px">Dosya</label>
+      <div class="row">
+        <input type="file" id="file" name="file" class="form-control" />
+      </div>
+    </div>
+    <input
+      type="submit"
+      value="Ekle"
+      class="btn btn-outline-dark mt-4"
+      style="margin-left: 50%; transform: translateX(-50%)"
+    />
+  </form>
+  <script>
+    let slider = document.querySelector(".slidernav");
+    let icon = document.querySelector(".fa-bars");
+    icon.addEventListener("click", () => {
+      slider.classList.toggle("slidernavmargin");
+    });
+    window.onscroll = function () {
+      scrollfunc();
+    };
+    let scrollnav = document.querySelector(".scroll-nav");
+    let scrolltop = document.querySelector(".fa-arrow-up");
+
+    function scrollfunc() {
+      if (
+        document.body.scrollTop > 40 ||
+        document.documentElement.scrollTop > 40
+      ) {
+        scrollnav.style.top = "0";
+      } else {
+        scrollnav.style.top = "-50px";
+      }
+      scrolltop.addEventListener("click", () => {
+        window.scrollTo(0, 0);
+      });
+    }
+  </script>
+  {% endblock content %}
+</body>

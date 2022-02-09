@@ -1,0 +1,102 @@
+  
+{% extends 'hoodApp/main.html' %} {% block content%} {% load static %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+
+<title>İletişim | BMM</title>
+</head>
+
+<body>
+    {% for message in messages %}
+    <div class="message alert alert-success text-center col-3">{{message}}</div>
+    {% endfor %}
+    
+    
+<div class="slidernav">
+    <ul style="color: black;visibility: visible;margin-left: 50%;transform: translateX(-50%)">
+        <li><a href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    ">Anasayfa</a></li>
+        <li>
+            <a href="{% url 'inbox-citizen' request.user.id %}">Gelen Kutusu</a
+        >
+      </li>
+        <li><a href="#">Kadromuz</a></li>
+        <li><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+        <li><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
+        title="Ayarlar"></i></a></li>
+        <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+        alt="Çıkış Yap"></i></a></li>
+    </ul>
+</div>
+<div class="scroll-nav">
+        <ul class="ul d-flex justify-content-end text-center">
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;"><img src="{% static 'mahresimler/logo.png' %}" style="width: 18px;height: 18px;margin-top: 18%;"/></p>
+            <li class="li">
+                <i class="fas fa-arrow-up" style="cursor: pointer;display: block;visibility: visible;margin-top: 6px;"></i>
+            </li>
+        </ul>
+    </div>
+    <nav>
+
+    <ul class="d-flex justify-content-end text-center">
+        <p class="geri li" style="
+          position: absolute;
+          left: 15px;
+          font-size: 18px;
+          color: white;
+        ">
+            <a href="{% url 'onerivesikayet' %}" style="color: white; text-decoration: none; display: block">Geri Dön</a
+        >
+      </p>
+      <li class="li">Öneri ve Şikayet Detayları</li>
+    </ul>
+  </nav>
+{{istek.file}}
+{% if istek.image %}
+  <div>
+    <div style="width: 73%;text-align: center;margin-top: 40px;"><p>{{istek.adsoyad}}</p></div>
+    <img src="{{istek.image.url}}" style="width: 25%;height:70%;position: absolute;right: 4%;top: 10%;">
+    <div style="margin-top:50px;width: 70%;text-align: center;"><p>{{istek.acıklama}}</p></div>
+  </div>
+  {% else %}
+  <div>
+    <div style="text-align: center;margin-top: 40px"><p>Ad Soyad : {{istek.adsoyad}}</p></div>
+    <div style="text-align: center;margin-top: 40px;font-size: 20px;width: 84vw;margin-left: 8vw;"><p>Açıklama : {{istek.acıklama}}</p></div>
+    <div style="text-align: center;margin-top: 40px;font-size: 20px;width: 84vw;margin-left: 8vw;"><p>Telefon Numarası : {{istek.numara}}</p></div>
+  </div>
+
+{% endif %}
+    
+<script>
+        let slider = document.querySelector(".slidernav");
+        let icon = document.querySelector(".fa-bars");
+        icon.addEventListener("click", () => {
+        slider.classList.toggle("slidernavmargin");
+        });
+        window.onscroll = function() {
+        scrollfunc();
+        };
+        let scrollnav = document.querySelector(".scroll-nav");
+        let scrolltop = document.querySelector(".fa-arrow-up");
+
+        function scrollfunc() {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+             scrollnav.style.top = "0";
+            } else {
+        scrollnav.style.top = "-50px";
+            }
+            scrolltop.addEventListener("click", () => {
+                window.scrollTo(0, 0);
+            });
+}
+    </script>
+
+
+
+
+{% endblock content%}
+

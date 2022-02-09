@@ -1,0 +1,170 @@
+{% extends 'hoodApp/main.html' %} {% block content%}
+<style>
+    .duyurutr td:nth-child(2) {
+        max-width: 15vw;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 200px;
+    }
+</style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+
+<title>Duyurular | BMM</title>
+</head>
+
+<body>
+    {% for message in messages %}
+    <div class="message alert alert-success text-center col-3">{{message}}</div>
+    {% endfor %}
+    <div class="slidernav">
+        <ul style="color: black;visibility: visible;margin-left: 50%;transform: translateX(-50%)">
+            <li><a href="{% url 'citizen-home' %}">Anasayfa</a></li>
+            <li>
+                <a href="{% url 'inbox-citizen' request.user.id %}">Gelen Kutusu</a
+        >
+      </li>
+        <li><a href="#">Kadromuz</a></li>
+            <li><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
+        title="Ayarlar"></i></a></li>
+            <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+        alt="Çıkış Yap"></i></a></li>
+        </ul>
+    </div>
+    <div class="scroll-nav">
+        <ul class="ul d-flex justify-content-end text-center">
+            <p class="welcomeuser" style="
+            position: absolute;
+            left: 30px;
+            top: 5px;
+            font-size: 18px;
+            color: white;
+          ">
+                Beşevler Mahallesi Muhtarlığı
+            </p>
+            <li class="li">
+                <i class="fas fa-arrow-up" style="
+              cursor: pointer;
+              display: block;
+              visibility: visible;
+              margin-top: 6px;
+            "></i>
+            </li>
+        </ul>
+    </div>
+     <nav>
+    <ul class="ul d-flex justify-content-end text-center">
+            
+            {% if request.user.is_anonymous %}
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;z-index: 1;">
+                   Hoşgeldiniz</p>
+            <li class="li"><a href="<li class="li"><a href="
+                    {% url 'citizen-home' %}
+                    ">Anasayfa</a></li>
+            <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li class="li"><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+            <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
+            <li class="li"><a href="{% url 'register' %}" style="border: 1px solid white;padding: 2px;border-radius: 2px;">Kayıt Ol</a></li>
+            <li class="li"><a href="{% url 'login' %}" style="outline: 1px solid white;padding: 2px;border-radius: 2px;">Giriş Yap</a></li>
+            <li><i class="fas fa-bars"></i></li>
+
+                {% else %}
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;">Hoşgeldin , {{request.user}}</p>
+            <li class="li"><a href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    ">Anasayfa</a></li>
+            <li class="li"><a href="{% url 'inbox-citizen' request.user.id %}">Gelen Kutusu</a></li>
+            <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
+            <li class="li"><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+            <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li class="li"><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
+            title="Ayarlar"></i></a></li>
+            <li class="li"><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+                alt="Çıkış Yap"></i></a></li>
+            <li><i class="fas fa-bars"></i></li>
+
+                {% endif %}
+        </ul>
+  </nav>
+    {% if user.is_superuser %}
+    <form method="POST">
+        {% csrf_token %}
+        <table align="center" style="margin-top: 50px;">
+            <tr>
+                <td><input type="text" placeholder="Başlık" name="arama" id="arama" class="form-control"></td>
+                <td><input type="submit" class="btn btn-outline-dark btn-sm" value="Ara" style="margin-left: 20px;"></td>
+                <td><a href="{% url 'duyuru-ekle' %}"><i class="fas fa-plus-circle" style="margin-left: 5px;"></i></a></td>
+            </tr>
+        </table>
+    </form>
+    {% endif %} {% if duyurular %}
+    <table class="table table-striped table-hover rounded text-center" style="margin-top: 50px;">
+        <thead>
+            <th>Başlık</th>
+            <th>Açıklama</th>
+            <th>Tarih</th>
+            <th>Detay</th>
+            {% if user.is_superuser %}
+            <th>Düzenle</th>
+            <th>Sil</th>
+            {% endif %}
+        </thead>
+        {% for duyuru in duyurular %}
+        <tr class="duyurutr">
+            <td>{{duyuru.title}}</td>
+            <td>{{duyuru.desc}}</td>
+            <td>{{duyuru.update_time}}</td>
+            <td><a href="{% url 'duyuru-tek' duyuru.id %}"><i class="fas fa-bullhorn"></i></a></td>
+            {% if user.is_superuser%}
+            <td><a href="{% url 'duyuru-duzenle' duyuru.id %}"><i class="far fa-edit"></i></a></td>
+            <td><a href="{% url 'duyuru-sil' duyuru.id %}"><i class="fas fa-minus-circle"></i></a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+    <p style="padding-left: 40px;font-size: 17px;">
+        {% if duyurular.has_previous%}
+        <a href="?page=1" style="color: black;"><i class="fas fa-angle-double-left"></i></a> {% endif %} {% if duyurular.has_previous%}
+        <a href="?page={{duyurular.previous_page_number}}" style="color: black;"><i class="fas fa-chevron-left"></i></a> {% else %}
+        <i class="fas fa-chevron-left disabled" style="color: gray;">
+        </i> {% endif %} {{duyurular.number}} de {{duyurular.paginator.num_pages}} {% if duyurular.has_next %}
+        <a href="?page={{duyurular.next_page_number}}" style="color: black;"><i class="fas fa-chevron-right"></i></a>
+        <a href="?page={{duyurular.paginator.num_pages}}" style="color: black;"><i class="fas fa-angle-double-right"></i></a> {% else %}
+        <i class="fas fa-chevron-right" style="color: gray;"></i> {% endif %}
+
+    </p>
+
+    {%else%}
+    <h3 style="text-align: center;margin-top: 60px;">Duyuru Yok...</h3>
+
+    {% endif %}
+    <script>
+        let slider = document.querySelector(".slidernav");
+        let icon = document.querySelector(".fa-bars");
+        icon.addEventListener("click", () => {
+        slider.classList.toggle("slidernavmargin");
+        });
+        window.onscroll = function() {
+        scrollfunc();
+        };
+        let scrollnav = document.querySelector(".scroll-nav");
+        let scrolltop = document.querySelector(".fa-arrow-up");
+
+        function scrollfunc() {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+             scrollnav.style.top = "0";
+            } else {
+        scrollnav.style.top = "-50px";
+            }
+            scrolltop.addEventListener("click", () => {
+                window.scrollTo(0, 0);
+            });
+}
+    </script>
+    {% endblock content %}

@@ -1,0 +1,302 @@
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.login-button {
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.message {
+  opacity: 0;
+  animation: message 2.5s ease-in;
+  position: absolute;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes message {
+  0% {
+    top: 0px;
+    opacity: 1;
+  }
+  50% {
+    top: 40px;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    opacity: 0;
+  }
+}
+
+nav {
+  background-color: rgb(58, 58, 58);
+}
+
+ul {
+  list-style: none;
+}
+
+.li {
+  margin-left: 25px;
+  margin-right: 25px;
+  transition: 0.4s;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 18px;
+  color: white;
+}
+
+.desc {
+  background-color: red;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100px;
+}
+
+.ahref {
+  text-decoration: none;
+  color: rgb(165, 165, 165);
+
+  transition: 0.3s;
+}
+
+.ahref:hover {
+  color: white;
+  transition: 0.3s;
+}
+
+.li a {
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  color: rgb(247, 247, 247);
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.li a:after {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 2px;
+  content: "";
+  background-color: white;
+  visibility: none;
+  z-index: -1;
+  transform: scaleX(0);
+  transition: 0.4s ease;
+}
+
+.li a:hover,
+.li a:focus {
+  transition: 0.4s ease;
+}
+
+.li a:hover:after,
+.li a:focus:after {
+  transform: scaleX(1);
+  visibility: visible;
+  color: black;
+  transition: 0.4s ease;
+}
+
+.fa-bars {
+  color: white;
+}
+
+tr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.map {
+  width: 40vw;
+  height: 50vh;
+  right: 60px;
+  text-align: center;
+  float: right;
+  place-items: center;
+  margin-right: 80px;
+}
+
+.contact-us {
+  width: 25vw;
+  margin-left: 10vw;
+  float: left;
+}
+
+.button {
+  border-radius: 5px;
+}
+
+.fa-bars {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  visibility: hidden;
+  pointer-events: none;
+  color: white;
+}
+
+.fa-filter,
+.fa-remove-format {
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+input {
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-right: 6px;
+  border: none;
+}
+
+.nature {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../mahresimler/1994540.jpg");
+  background-size: cover;
+  text-align: center;
+}
+
+.vatandaskayit {
+  position: relative;
+  top: 22vh;
+  width: 100vw;
+}
+
+.filtretablo {
+  display: none;
+  margin-right: 5px;
+}
+
+.displayed {
+  display: block;
+  transition: 0.4s;
+}
+
+.fa-filter:hover,
+.fa-remove-format:hover,
+.fa-remove-format:focus,
+.fa-filter:focus {
+  color: rgb(150, 150, 150);
+  transition: 0.3s;
+}
+
+.slidernav {
+  visibility: hidden;
+  width: 42%;
+  font-size: 2em;
+  height: 100%;
+  background-color: rgb(253, 253, 253);
+  position: absolute;
+  margin-left: 100%;
+  top: 37px;
+  z-index: 16510;
+  transition: 0.3s;
+}
+
+.slidernavmargin {
+  margin-left: 58%;
+  visibility: visible;
+  transition: 0.3s;
+}
+
+.slidernavmargin ul li {
+  color: red;
+}
+
+.slidernav ul {
+  margin-left: 50%;
+  transform: translateX(-50%);
+  list-style-type: none;
+}
+
+.slidernav ul li {
+  text-align: center;
+  margin-top: 20%;
+}
+
+.slidernav ul li a {
+  color: black;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+input {
+  border: 1px solid rgb(211, 211, 211);
+}
+
+.scroll-nav {
+  background-color: rgb(58, 58, 58);
+  position: fixed;
+  width: 100%;
+  transition: 0.3s;
+  height: 37px;
+  top: -50px;
+  z-index: 10;
+}
+
+table i {
+  color: rgb(58, 58, 58);
+}
+
+.contain {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.children {
+  min-width: 500px;
+  text-align: center;
+}
+
+iframe {
+  min-width: 48vw;
+  min-height: 45vh;
+}
+
+@media only screen and (max-width: 1300px) {
+  .ul li {
+    visibility: hidden;
+  }
+  .ul a {
+    font-size: 1px;
+    color: rgb(58, 58, 58);
+  }
+  .fa-bars {
+    display: block;
+    visibility: visible;
+    cursor: pointer;
+    pointer-events: all;
+    font-size: 19px;
+  }
+  .welcomeuser {
+    visibility: visible;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .contact-us {
+    width: 80vw;
+    margin-left: 10vw;
+  }
+  .map {
+    margin-top: 30px;
+    float: left;
+    margin-left: 15vw;
+    width: 70vw;
+  }
+}

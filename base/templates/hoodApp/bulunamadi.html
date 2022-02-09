@@ -1,0 +1,92 @@
+{% extends 'hoodApp/main.html' %} {% block content%}
+<title>Anasayfa | BMM</title>
+<style>
+    html{
+        overflow: hidden;
+    }
+</style>
+{% load static %}
+<link rel="stylesheet" href="{% static 'navbar.css' %}">
+</head>
+
+
+<body>
+    {% for message in messages %}
+    <div class="message alert alert-success text-center col-3">{{message}}</div>
+    {% endfor %}
+    
+
+    <div class="slidernav" style="background-color: transparent;">
+        <ul style="visibility: visible;margin-left: 50%;transform: translateX(-50%);">
+            <li><a href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    " style="color: white;">Anasayfa</a></li>
+            <li>
+                <a href="{% url 'inbox-citizen' request.user.id %}" style="color: white;">Gelen Kutusu</a
+        >
+      </li>
+        <li><a href="#" style="color: white;">Kadromuz</a></li>
+            <li><a href="{% url 'citizen-contact' %}" style="color: white;">İletişim</a></li>
+            <li><a href="{% url 'citizen-settings' %}" style="color: white;"><i class="fas fa-cogs" alt="Ayarlar"
+        title="Ayarlar"></i></a></li>
+            <li><a href="{% url 'logout' %}" style="color: white;"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+        alt="Çıkış Yap"></i></a></li>
+        </ul>
+    </div>
+
+    <nav style="position: absolute;width: 100%;background: transparent;">  
+        <ul class="ul d-flex justify-content-end text-center">
+            
+            {% if request.user.is_anonymous %}
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;z-index: 1;">
+                   Hoşgeldiniz</p>
+            <li class="li"><a href="<li class="li"><a href="
+                    {% url 'citizen-home' %}
+                    ">Anasayfa</a></li>
+            <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li class="li"><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+            <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
+            <li class="li"><a href="{% url 'register' %}" style="border: 1px solid white;padding: 2px;border-radius: 2px;">Kayıt Ol</a></li>
+            <li class="li"><a href="{% url 'login' %}" style="outline: 1px solid white;padding: 2px;border-radius: 2px;">Giriş Yap</a></li>
+            <li><i class="fas fa-bars"></i></li>
+
+                {% else %}
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;">Hoşgeldin , {{request.user}}</p>
+            <li class="li"><a href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    ">Anasayfa</a></li>
+            <li class="li"><a href="{% url 'inbox-citizen' request.user.id %}">Gelen Kutusu</a></li>
+            <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
+            <li class="li"><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+            <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li class="li"><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
+            title="Ayarlar"></i></a></li>
+            <li class="li"><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+                alt="Çıkış Yap"></i></a></li>
+            <li><i class="fas fa-bars"></i></li>
+
+                {% endif %}
+        </ul>
+    </nav>
+
+    <div class="nature">
+        <span><img src="{% static 'mahresimler/logo.png' %}" style="width: 30px;height: 30px;margin-top: 18%;margin-bottom: 20px;"/>
+            <h3 class="mb-4">Bu sayfa kullanılamıyor. <a class="ahref" href="{% url 'citizen-home' %}">Anasayfaya</a> geri dönün.</h3>
+            <h3>404</h3>
+        </span>        
+        </div>
+    </div>
+
+    
+    
+
+    
+    {% endblock content %}

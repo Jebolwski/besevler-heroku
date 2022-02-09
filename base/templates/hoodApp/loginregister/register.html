@@ -1,0 +1,99 @@
+{%extends 'hoodApp/main.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+
+<title>
+    Kayıt Ol | BMM
+</title>
+</head>
+
+<body>
+    {% for message in messages %}
+            <div class="message alert alert-danger mt-4 mb-4 text-center col-3" style="margin-left: 50%;transform: translateX(-50%);">{{message}}</div>
+    {% endfor %}
+    <nav>
+        <ul class="ul d-flex justify-content-end text-center">
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;">Hoşgeldiniz</p>
+            <li class="li" style="color: white;">Kayıt Ekranı</li>
+        </ul>
+    </nav>
+    <div class="container-fluid">
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="w-100 text-center">
+                <h4 class="pt-4">Beşevler Mahallesi Muhtarlığı</h4>
+            </div>
+            <div class="row col-4 offset-4">
+                {% if form.username.errors %}
+                <label style="font-size: 18px;" class="mt-2">Kullanıcı Adı</label>
+                <label>{{form.username}}</label>
+                <span style="padding-top: 15px;color: rgb(206, 108, 108);">{{form.username.errors}}</span>
+                {% else %}
+                <label style="font-size: 18px;" class="mt-4">Kullanıcı Adı</label>
+                <label>{{form.username}}</label>
+                {% endif %}
+            </div>
+
+            <div class="row col-4 offset-4">
+                {% if form.email.errors %}
+                <label style="font-size: 18px;" class="mt-2">Email</label>
+                <label>{{form.email}}</label>
+                <span style="padding-top: 15px;color: rgb(206, 108, 108);">{{form.email.errors}}</span>
+                {% else %}
+                <label style="font-size: 18px;" class="mt-4">Email</label>
+                <label id="email">{{form.email}}</label>
+                {% endif %}
+            </div>
+            <div class="row col-4 offset-4">
+                {% if form.password1.errors %}
+                <label style="font-size: 18px;" class="mt-2">Şifre</label>
+                <label>{{form.password1}}</label>
+                <span style="padding-top: 15px;color: rgb(206, 108, 108);">{{form.password1.errors}}</span>
+                {% else %}
+                <label style="font-size: 18px" class="mt-4">Şifre</label>
+                <label>{{form.password1}}</label>
+                {% endif %}
+            </div>
+            
+
+            <div class="row col-4 offset-4">
+                {% if form.password2.errors %}
+                <label style="font-size: 18px;" class="mt-2">Şifre (Tekrar)</label>
+                <label>{{form.password2}}</label>
+                <span style="padding-top: 15px;color: rgb(206, 108, 108);">{{form.password2.errors}}</span>
+                {% else %}
+                <label style="font-size: 18px" class="mt-4">Şifre (Tekrar)</label>
+                <label>{{form.password2}}</label>
+                {% endif %}
+            </div>
+            
+
+
+            <div class="row col-2 offset-5 mt-5 pb-5">
+                <input type="submit" value="Kayıt Ol" class="btn btn-outline-dark" style="display: grid;place-items: center;">
+            </div>
+            <h5 class="text-center mt-4 pb-4">Hesabın var mı? <a href="{% url 'login' %}" style="color: black;">Giriş
+                    Yap</a>
+            </h5>
+
+        </form>
+    </div>
+    <script>
+        window.onscroll = function() {
+        scrollfunc();
+        };
+        let scrollnav = document.querySelector(".scroll-nav");
+        let scrolltop = document.querySelector(".fa-arrow-up");
+
+        function scrollfunc() {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+             scrollnav.style.top = "0";
+            } else {
+        scrollnav.style.top = "-50px";
+            }
+            scrolltop.addEventListener("click", () => {
+                window.scrollTo(0, 0);
+            });
+}
+    </script>
+    {% endblock content %}
