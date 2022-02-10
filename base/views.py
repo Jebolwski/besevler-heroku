@@ -13,12 +13,13 @@ from .filters import PersonFilter
 # Create your views here.
 
 
-#!BULUNAMADI
-def Bulunamadi(request):
-    return render(request,'bulunamadi.html')
+#!BULUNAMADI (404)
+def Bulunamadi(request,exception):
+    return render(request,'base/404.html')
 
-
-
+#!HATA (500)
+def Hata(request):
+    return render(request,'base/500.html')
 #!LOGIN REGISTER
 def CustomLoginView(request):
     
