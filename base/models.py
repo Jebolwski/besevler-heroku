@@ -80,7 +80,7 @@ class IstekOneri(models.Model):
     adsoyad = models.CharField(max_length=30,blank=False,null=False)
     acıklama=models.TextField(max_length=300,blank=False,null=False)
     numara = models.CharField(max_length=11,blank=True,null=True)
-    image=models.ImageField(null=True,blank=True,upload_to="istekoneri")
+    # image=models.ImageField(null=True,blank=True,upload_to="istekoneri")
     create_time = models.DateTimeField(
         auto_now_add=True, blank=True, null=True)
     update_time = models.DateTimeField(auto_now=True,blank=True, null=True) 
