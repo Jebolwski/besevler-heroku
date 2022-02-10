@@ -1,0 +1,108 @@
+{% extends 'base/main.html' %}
+{% block content%}
+<title>Şifre Değiştirme | BMM</title>
+<style>
+    nav {
+        background-color: rgb(58, 58, 58);
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+        padding-right: 5px;
+        padding-left: 5px;
+        margin-left: 25px;
+        margin-right: 25px;
+        transition: 0.4s;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 18px;
+    }
+
+    li a {
+        text-decoration: none;
+        color: rgb(255, 255, 255);
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+    li a:hover {
+        color: rgb(253, 253, 253);
+        text-decoration: underline;
+        transition: 0.3s;
+    }
+</style>
+</head>
+<nav>
+    <ul class="d-flex justify-content-center text-center">
+        <li style="color: white;">Şifre Sıfırlama</li>
+    </ul>
+</nav>
+
+
+    <h4 class="mt-5 col-6 offset-3">Parola sıfırlama tamamlandı. <br> <br>
+        Parolanız ayarlandı. Şimdi devam edebilir ve oturum açabilirsiniz.</h4>
+
+        
+    <a href="{% url 'login' %}" class="btn btn-outline-dark mt-5" style="margin-left: 50%;transform: translateX(-50%);">Giriş Yap</a>
+
+
+
+
+
+    <div class="slidernav">
+        <ul style="visibility: visible;margin-left: 50%;transform: translateX(-50%);">
+            {% if request.user.is_anonymous %}
+            <li><a href="
+                    {% url 'citizen-home' %}
+                    " >Anasayfa</a></li>
+        <li><a href="{% url 'citizen-contact' %}" >İletişim</a></li>
+            <li><a href="{% url 'onerivesikayet' %}" >Öneri ve Şikayet</a></li>
+            <li><a href="{% url 'duyurular' %}" >Duyurular</a></li>
+            <li><a href="{% url 'register' %}" >Kayıt Ol</a></li>
+            <li><a href="{% url 'login' %}">Giriş Yap</a></li>
+            {% else %}
+            <li><a href="
+                    {% if user.is_superuser %}
+                    {% url 'admin-home' %}
+                    {% else %}
+                    {% url 'citizen-home' %}
+                    {% endif %}
+                    " >Anasayfa</a></li>
+        <li><a href="{% url 'citizen-contact' %}" >İletişim</a></li>
+            <li><a href="{% url 'onerivesikayet' %}" >Öneri ve Şikayet</a></li>
+            <li><a href="{% url 'duyurular' %}" >Duyurular</a></li>
+            <li><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
+            title="Ayarlar" ></i></a></li>
+            <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
+                alt="Çıkış Yap" ></i></a></li>
+            {% endif %}
+        </ul>
+</div>
+
+    <script>
+        let slider = document.querySelector(".slidernav");
+        let icon = document.querySelector(".fa-bars");
+        icon.addEventListener("click", () => {
+        slider.classList.toggle("slidernavmargin");
+        });
+        window.onscroll = function() {
+        scrollfunc();
+        };
+        let scrollnav = document.querySelector(".scroll-nav");
+        let scrolltop = document.querySelector(".fa-arrow-up");
+
+        function scrollfunc() {
+            if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+             scrollnav.style.top = "0";
+            } else {
+        scrollnav.style.top = "-50px";
+            }
+            scrolltop.addEventListener("click", () => {
+                window.scrollTo(0, 0);
+            });
+}
+    </script>
+{% endblock content%}
