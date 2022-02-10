@@ -7,7 +7,7 @@
 
 <body>
     {% for message in messages %}
-    <div class="message alert alert-success text-center col-3">{{message}}</div>
+    <div class="message alert alert-success text-center" style="width: 60%;">{{message}}</div>
     {% endfor %}
     <div class="slidernav">
         <ul style="visibility: visible;margin-left: 50%;transform: translateX(-50%);">
@@ -127,7 +127,6 @@
                     <th>Ad</th>
                     <th>Cinsiyet</th>
                     <th>İş</th>
-                    <th>Doğum Tarihi</th>
                     <th>Bak</th>
                     <th>Düzenle</th>
                     <th>Sil</th>
@@ -140,7 +139,6 @@
                     <td>{{person.name_surname}}</td>
                     <td>{{person.gender}}</td>
                     <td>{{person.job}}</td>
-                    <td>{{person.birth_date}}</td>
                     <td><a href="{% url 'lookperson' person.id %}"><i class="far fa-eye"></i></a></td>
                     <td><a href="{% url 'editperson' person.id %}"><i class="fas fa-user-edit"></i></a></td>
                     <td><a href="{% url 'deleteperson' person.id %}"><i class="fas fa-user-minus"></i></td>

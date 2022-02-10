@@ -12,7 +12,9 @@
 
 <body>
   {% for message in messages %}
-  <div class="message alert alert-success text-center col-3">{{message}}</div>
+  <div class="message alert alert-success text-center" style="width: 60%">
+    {{message}}
+  </div>
   {% endfor %}
 
   <div class="slidernav">

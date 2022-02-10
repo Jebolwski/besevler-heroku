@@ -13,6 +13,7 @@ html {
   animation: message 2.5s ease-in;
   position: absolute;
   margin-left: 50%;
+  width: 60%;
   transform: translateX(-50%);
 }
 
