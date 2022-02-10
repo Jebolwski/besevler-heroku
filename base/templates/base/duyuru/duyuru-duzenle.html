@@ -68,8 +68,8 @@
       <div class="row">
         <input type="text" value="{{duyuru.desc}}" name="desc" class="form-control" />
       </div>
-      {% if duyuru.image %}
-      <label style="margin-top: 30px">Şimdiki Fotoğraf : {{duyuru.image}} <input type="checkbox" name="temizle">Temizle</label>
+      {% comment %} {% if duyuru.image %}
+      <label style="margin-top: 30px">Şimdiki Fotoğraf : {{duyuru.image.url}} <input type="checkbox" name="temizle">Temizle</label>
       <div class="row">
         <label for="file" style="margin-top: 10px">Değiştir</label>
       </div>
@@ -84,7 +84,7 @@
         <input type="file" id="file" name="file"class="form-control" />
       </div>
 
-      {% endif %}
+      {% endif %} {% endcomment %}
     </div>
     <input
       type="submit"

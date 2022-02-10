@@ -67,7 +67,7 @@ class Announcement(models.Model):
     
     title=models.CharField(max_length=30,blank=False,null=False)
     desc=models.TextField(max_length=200,blank=False,null=False)
-    image=models.ImageField(null=True,blank=True,upload_to="duyuru")
+    # image=models.ImageField(null=True,blank=True,upload_to="duyuru")
     create_time = models.DateTimeField(
         auto_now_add=True, blank=True, null=True)
     update_time = models.DateTimeField(auto_now=True,blank=True, null=True)

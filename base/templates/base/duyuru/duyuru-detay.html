@@ -61,7 +61,7 @@
 
   
 
-{% if duyuru.image %}
+<!-- {% if duyuru.image %}
   <table>
     <tr style="display: flex;align-items: flex-start;">
       <td class="col col-6 offset-1 text-center mt-4" colspan="2" style="font-size: 1.125em;"><h4>{{duyuru.title}}</h4> <br> <br> <p>{{duyuru.desc}}</p></td>
@@ -69,13 +69,15 @@
       <td class="col col-4 mt-5"><img src="{{duyuru.image.url}}" style="min-width: 150px;min-height: 350px;" class="col-10"></td>
     </tr>
   </table>
-  {% else %}
-  <div>
+
+  {% else %}-->
+  <div style="line-height: 1.6;">
     <div style="text-align: center;margin-top: 40px"><h3>Başlık : {{duyuru.title}}</h4></div>
     <div style="text-align: center;margin-top: 40px;font-size: 20px;width: 84vw;margin-left: 8vw;"><p>Açıklama : {{duyuru.desc}}</p></div>
+    <div style="text-align: center;margin-top: 40px;font-size: 20px;width: 84vw;margin-left: 8vw;"><p>Oluşturulma Tarihi : {{duyuru.update_time}}</p></div>
   </div>
 
-{% endif %}
+<!-- {% endif %} -->
 
 <script>
         window.onscroll = function() {
