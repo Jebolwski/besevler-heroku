@@ -52,7 +52,6 @@ ul {
 }
 
 .desc {
-  background-color: red;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -204,7 +203,7 @@ input {
   position: absolute;
   margin-left: 100%;
   top: 37px;
-  z-index: 16510;
+  z-index: 165;
   transition: 0.3s;
 }
 

@@ -125,8 +125,8 @@
                 <thead class="text-center">
                     <th>TC No</th>
                     <th>Ad</th>
-                    <th>Cinsiyet</th>
-                    <th>İş</th>
+                    <th class="d-none d-md-table-cell">Cinsiyet</th>
+                    <th class="d-none d-md-table-cell">İş</th>
                     <th>Bak</th>
                     <th>Düzenle</th>
                     <th>Sil</th>
@@ -137,8 +137,8 @@
                 <tr class="text-center">
                     <td>{{person.tcno}}</td>
                     <td>{{person.name_surname}}</td>
-                    <td>{{person.gender}}</td>
-                    <td>{{person.job}}</td>
+                    <td class="d-none d-md-table-cell">{{person.gender}}</td>
+                    <td class="d-none d-md-table-cell">{{person.job}}</td>
                     <td><a href="{% url 'lookperson' person.id %}"><i class="far fa-eye"></i></a></td>
                     <td><a href="{% url 'editperson' person.id %}"><i class="fas fa-user-edit"></i></a></td>
                     <td><a href="{% url 'deleteperson' person.id %}"><i class="fas fa-user-minus"></i></td>
@@ -146,30 +146,28 @@
                 {% endfor %}
             </table>
             <p style="padding-left: 40px;font-size: 17px;">
-        {% if persons.has_previous%}
-        <a href="?page=1" style="color: black;"><i class="fas fa-angle-double-left"></i></a>
-        {% endif %}
-        {% if persons.has_previous%}
-        <a href="?page={{persons.previous_page_number}}" style="color: black;"><i class="fas fa-chevron-left"></i></a> 
-        {% else %}
-        <i class="fas fa-chevron-left disabled" style="color: gray;">
-        </i> 
-        {% endif %} 
+                {% if persons.has_previous%}
+                <a href="?page=1" style="color: black;"><i class="fas fa-angle-double-left"></i></a>
+                {% endif %}
+                {% if persons.has_previous%}
+                <a href="?page={{persons.previous_page_number}}" style="color: black;"><i class="fas fa-chevron-left"></i></a> 
+                {% else %}
+                <i class="fas fa-chevron-left disabled" style="color: gray;">
+                </i> 
+                {% endif %} 
         
-        {{persons.number}} de {{persons.paginator.num_pages}} 
+                {{persons.number}} de {{persons.paginator.num_pages}} 
         
-        {% if persons.has_next %}
-        <a href="?page={{persons.next_page_number}}" style="color: black;"><i class="fas fa-chevron-right"></i></a>
-        <a href="?page={{persons.paginator.num_pages}}" style="color: black;"><i class="fas fa-angle-double-right"></i></a>
-        {% else %}
-        <i class="fas fa-chevron-right" style="color: gray;"></i> 
-        {% endif %}
-
-    </p>
-            {% else %}
-            <h4 class="text-center mt-3">Kaydedilmiş Kişi Yok.</h4>
-            {% endif %}
-
+                {% if persons.has_next %}
+                <a href="?page={{persons.next_page_number}}" style="color: black;"><i class="fas fa-chevron-right"></i></a>
+                <a href="?page={{persons.paginator.num_pages}}" style="color: black;"><i class="fas fa-angle-double-right"></i></a>
+                {% else %}
+                <i class="fas fa-chevron-right" style="color: gray;"></i> 
+                {% endif %}
+        </p>
+                {% else %}
+                <h4 class="text-center mt-3">Kaydedilmiş Kişi Yok.</h4>
+                {% endif %}
         </div>
     </form>
     <script>
