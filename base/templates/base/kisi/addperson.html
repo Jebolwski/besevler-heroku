@@ -85,25 +85,34 @@
         <form method="POST" action="">
             {% csrf_token %}
             <table class="table table-hover text-center mt-5 col-11">
-                <tr>
+                 <tr>
                     <td>Ad Soyad</td>
                     <td>{{form.name_surname}}</td>
                     <td>Cinsiyet</td>
                     <td>{{form.gender}}</td>
-                    <td>TC Numarası</td>
-                    <td>{{form.tcno}}</td>
+                    
                 </tr>
                 <tr>
+                    <td>TC Numarası</td>
+                    <td>{{form.tcno}}</td>
                     <td>Doğum Tarihi</td>
                     <td>{{form.birth_date}}</td>
+                </tr>
+                <tr>
+                    <td>Anne</td>
+                    <td>{{form.mother}}</td>
+                    <td>Email</td>
+                    <td>{{form.email}}</td>
+                </tr>
+                <tr>
+                    
                     <td>İş</td>
                     <td>{{form.job}}</td>
                     <td>Doğum Yeri</td>
                     <td>{{form.birth_city}}</td>
                 </tr>
                 <tr>
-                    <td>Anne</td>
-                    <td>{{form.mother}}</td>
+                    
                     <td>Baba</td>
                     <td>{{form.father}}</td>
                     <td>Oğlu</td>
@@ -115,8 +124,7 @@
                     <td>{{form.daughter}}</td>
                     <td>Adres</td>
                     <td>{{form.living_city}}</td>
-                    <td>Email</td>
-                    <td>{{form.email}}</td>
+                    
                 </tr>
             </table>
             <input type="submit" value="Ekle" class="btn btn-outline-dark d-grid justify-content-center">
