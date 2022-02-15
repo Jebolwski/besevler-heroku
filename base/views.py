@@ -146,6 +146,7 @@ def InboxAdminResponseView(request,inbox_id):
 def AddPersonView(request):
     form = AddForm()
     if request.method == 'POST':
+        print(request.POST)
         form = AddForm(request.POST)
         if form.is_valid():
             # form.instance.user = 'Jebolwski'
