@@ -52,6 +52,8 @@ urlpatterns = [
      #!ŞİFRE İŞLEMLERİ
     path('sifre-sifirla/', authview.PasswordChangeView.as_view(template_name="base/password/passwordreset.html"),
          name="change_password"),
+    path('sifre-sifirla-bitti/', authview.PasswordChangeDoneView.as_view(template_name="base/password/passwordresetdone1.html"),
+         name="password_change_done"),
     path('sifre-sifirla-gonderildi/',
          authview.PasswordResetDoneView.as_view(template_name="base/password/passwordresetdone.html"), name="password_reset_done"),
     path('sifre-sifirla/<uidb64>/<token>/',
