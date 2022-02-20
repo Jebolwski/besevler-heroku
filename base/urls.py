@@ -57,7 +57,7 @@ urlpatterns = [
     path('sifre-sifirla-gonderildi/',
          authview.PasswordResetDoneView.as_view(template_name="base/password/passwordresetdone.html"), name="password_reset_done"),
     path('sifre-sifirla/<uidb64>/<token>/',
-         authview.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
+         authview.PasswordResetConfirmView.as_view(template_name="base/password/passwordresetemail.html"), name="password_reset_confirm"),
     path('sifre-sifirlandı/', authview.PasswordResetCompleteView.as_view(template_name='base/password/resetcomplete.html'),
          name="password_reset_complete"),
     path('sifre-unuttum/', authview.PasswordResetView.as_view(template_name="base/password/passwordforgotreset.html"),

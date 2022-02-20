@@ -120,7 +120,8 @@
                     <td height="60"><a href="{% url 'add' %}"><i class="fas fa-user-plus" style="margin-left: 6px;"></i></a></td>
                 </tr>
             </table>
-            <br> {% if persons %}
+            <br> 
+            {% if persons %}
             <table class="table table-striped table-hover rounded col-5 offset-0">
                 <thead class="text-center">
                     <th>TC No</th>
@@ -164,7 +165,7 @@
                 {% else %}
                 <i class="fas fa-chevron-right" style="color: gray;"></i> 
                 {% endif %}
-        </p>
+            </p>
                 {% else %}
                 <h4 class="text-center mt-3">Kaydedilmiş Kişi Yok.</h4>
                 {% endif %}
