@@ -1,7 +1,7 @@
 {% extends 'base/main.html' %} {% block content%}
 <title>Anasayfa | BMM</title>
 <style>
-    html{
+    html {
         overflow: hidden;
     }
 </style>
@@ -14,18 +14,18 @@
     {% for message in messages %}
     <div class="message alert alert-success text-center" style="width: 60%;">{{message}}</div>
     {% endfor %}
-    
+
 
     <div class="slidernav">
         <ul style="visibility: visible;margin-left: 50%;transform: translateX(-50%);">
             {% if request.user.is_anonymous %}
             <li><a href="
                     {% url 'citizen-home' %}
-                    " >Anasayfa</a></li>
-        <li><a href="{% url 'citizen-contact' %}" >İletişim</a></li>
-            <li><a href="{% url 'onerivesikayet' %}" >Öneri ve Şikayet</a></li>
-            <li><a href="{% url 'duyurular' %}" >Duyurular</a></li>
-            <li><a href="{% url 'register' %}" >Kayıt Ol</a></li>
+                    ">Anasayfa</a></li>
+            <li><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+            <li><a href="{% url 'duyurular' %}">Duyurular</a></li>
+            <li><a href="{% url 'register' %}">Kayıt Ol</a></li>
             <li><a href="{% url 'login' %}">Giriş Yap</a></li>
             {% else %}
             <li><a href="
@@ -34,10 +34,10 @@
                     {% else %}
                     {% url 'citizen-home' %}
                     {% endif %}
-                    " >Anasayfa</a></li>
-        <li><a href="{% url 'citizen-contact' %}" >İletişim</a></li>
-            <li><a href="{% url 'onerivesikayet' %}" >Öneri ve Şikayet</a></li>
-            <li><a href="{% url 'duyurular' %}" >Duyurular</a></li>
+                    ">Anasayfa</a></li>
+            <li><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+            <li><a href="{% url 'duyurular' %}">Duyurular</a></li>
             <li><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
             title="Ayarlar" ></i></a></li>
             <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
@@ -46,49 +46,41 @@
         </ul>
     </div>
 
-    <nav style="position: absolute;width: 100%;background: transparent;">  
+    <nav style="position: absolute;width: 100%;background: transparent;">
         <ul class="ul d-flex justify-content-end text-center">
-            ,
-            {% if request.user.is_anonymous %}
+            , {% if request.user.is_anonymous %}
             <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;z-index: 1;">
-                   Hoşgeldiniz</p>
-            <li class="li"><a href="<li class="li"><a href="
-                    {% url 'citizen-home' %}
-                    ">Anasayfa</a></li>
-            <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
-            <li class="li"><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
-            <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
-            <li class="li"><a href="{% url 'register' %}" style="border: 1px solid white;padding: 2px;border-radius: 2px;">Kayıt Ol</a></li>
-            <li class="li"><a href="{% url 'login' %}" style="outline: 1px solid white;padding: 2px;border-radius: 2px;">Giriş Yap</a></li>
-            <li><i class="fas fa-bars"></i></li>
+                Hoşgeldiniz</p>
+            <li class="li">
+                <a href="<li class=" li "><a href=" {% url 'citizen-home' %} ">Anasayfa</a></li>
+            <li class="li "><a href="{% url 'citizen-contact' %} ">İletişim</a></li>
+            <li class="li "><a href="{% url 'onerivesikayet' %} ">Öneri ve Şikayet</a></li>
+            <li class="li "><a href="{% url 'duyurular' %} ">Duyurular</a></li>
+            <li class="li "><a href="{% url 'register' %} " style="border: 1px solid white;padding: 2px;border-radius: 2px; ">Kayıt Ol</a></li>
+            <li class="li "><a href="{% url 'login' %} " style="outline: 1px solid white;padding: 2px;border-radius: 2px; ">Giriş Yap</a></li>
+            <li><i class="fas fa-bars "></i></li>
 
                 {% else %}
-            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;">Hoşgeldin , {{request.user}}</p>
-            <li class="li"><a href="
-                    {% if user.is_superuser %}
-                    {% url 'admin-home' %}
-                    {% else %}
-                    {% url 'citizen-home' %}
-                    {% endif %}
-                    ">Anasayfa</a></li>
-            <li class="li"><a href="{% url 'inbox-citizen' request.user.id %}">Gelen Kutusu</a></li>
-            <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
-            <li class="li"><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
-            <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
-            <li class="li"><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
-            title="Ayarlar"></i></a></li>
-            <li class="li"><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
-                alt="Çıkış Yap"></i></a></li>
-            <li><i class="fas fa-bars"></i></li>
+            <p class="welcomeuser " style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white; ">Hoşgeldin , {{request.user}}</p>
+            <li class="li "><a href=" {% if user.is_superuser %} {% url 'admin-home' %} {% else %} {% url 'citizen-home' %} {% endif %} ">Anasayfa</a></li>
+            <li class="li "><a href="{% url 'inbox-citizen' request.user.id %} ">Gelen Kutusu</a></li>
+            <li class="li "><a href="{% url 'duyurular' %} ">Duyurular</a></li>
+            <li class="li "><a href="{% url 'onerivesikayet' %} ">Öneri ve Şikayet</a></li>
+            <li class="li "><a href="{% url 'citizen-contact' %} ">İletişim</a></li>
+            <li class="li "><a href="{% url 'citizen-settings' %} "><i class="fas fa-cogs " alt="Ayarlar "
+            title="Ayarlar "></i></a></li>
+            <li class="li "><a href="{% url 'logout' %} "><i class="fas fa-sign-out-alt " title="Çıkış Yap "
+                alt="Çıkış Yap "></i></a></li>
+            <li><i class="fas fa-bars "></i></li>
 
                 {% endif %}
         </ul>
     </nav>
 
-    <div class="nature">
-        <span><img src="{% static 'mahresimler/logo.png' %}" style="width: 30px;height: 30px;margin-top: 18%;margin-bottom: 20px;"/>
-            <h3 class="mb-4">Bir hata oluştu. <a class="ahref" href="{% url 'citizen-home' %}">Anasayfaya</a> geri dönün.</h3>
-            <h3>500</h3>
+    <div class="nature ">
+        <span><img src="{% static 'mahresimler/logo.png' %} " style="width: 30px;height: 30px;margin-top: 18%;margin-bottom: 20px; "/>
+            <h3 class="mb-4 ">Bir hata oluştu. <a class="ahref " href="{% url 'citizen-home' %} ">Anasayfaya</a> geri dönün.</h3>
+            <h3>404</h3>
         </span>        
         </div>
     </div>

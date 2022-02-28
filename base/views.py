@@ -239,11 +239,11 @@ def DuyuruDuzenle(request, pk):
     if request.method == 'POST':
             duyuru.title=request.POST['title']
             duyuru.desc=request.POST['desc']
-            # temizle=request.POST.get('temizle')
-            # if temizle=='on':
-            #     duyuru.image.delete()
-            # if request.FILES:
-            #     duyuru.image=request.FILES['file']
+            temizle=request.POST.get('temizle')
+            if temizle=='on':
+                duyuru.image.delete()
+            if request.FILES:
+                duyuru.image=request.FILES['file']
             duyuru.save()
             messages.success(request, 'Duyuru başarıyla düzenlendi.')
             return redirect('duyurular')
