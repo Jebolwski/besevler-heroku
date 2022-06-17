@@ -63,6 +63,11 @@
         </div>
     </form>
 <script>
+
+        
+        $(window).on("load", function() {
+            $('.loading').fadeOut(800);
+        });
         let slider = document.querySelector(".slidernav");
         let icon = document.querySelector(".fa-bars");
         icon.addEventListener("click", () => {

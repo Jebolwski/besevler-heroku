@@ -149,6 +149,11 @@
     {% endif %}
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script>
+
+        
+        $(window).on("load", function() {
+            $('.loading').fadeOut(800);
+        });
       $("input:nth-child(1)").attr('class','form-control');
         let slider = document.querySelector(".slidernav");
         let icon = document.querySelector(".fa-bars");

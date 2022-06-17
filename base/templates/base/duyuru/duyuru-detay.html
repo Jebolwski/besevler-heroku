@@ -80,6 +80,11 @@
 <!-- {% endif %} -->
 
 <script>
+
+        
+        $(window).on("load", function() {
+            $('.loading').fadeOut(800);
+        });
         window.onscroll = function() {
         scrollfunc();
         };

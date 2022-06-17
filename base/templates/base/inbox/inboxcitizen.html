@@ -3,6 +3,28 @@
 <title>Gelen Kutusu | BMM</title>
 
 <body>
+  <div
+    class="loading"
+    style="
+      width: 100vw;
+      height: 100%;
+      background-color: rgba(131, 131, 131, 0.815);
+      z-index: 100;
+      position: fixed;
+    "
+  >
+    <img
+      src="../../../static/mahresimler/logo.png"
+      class="loading-image"
+      style="
+        width: 12vw;
+        margin-left: 50vw;
+        transform: translateX(-50%);
+        margin-top: 20vh;
+      "
+    />
+    <h4 class="text-center text-light pt-5">Yükleniyor...</h4>
+  </div>
   {% for message in messages %}
   <div class="message alert alert-success text-center col-3">{{message}}</div>
   {% endfor %}
@@ -209,6 +231,9 @@
     {% endif %}
   </div>
   <script>
+    $(window).on("load", function () {
+      $(".loading").fadeOut(800);
+    });
     let slider = document.querySelector(".slidernav");
     let icon = document.querySelector(".fa-bars");
     icon.addEventListener("click", () => {

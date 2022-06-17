@@ -13,7 +13,7 @@
     <nav>
         <ul class="ul d-flex justify-content-end text-center">
             <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;">Hoşgeldiniz</p>
-            <li class="li" style="color: white;">Kayıt Ekranı</li>
+            <li class="li" style="color: white;"><a href="{% url 'citizen-home' %}"><i class="fa-solid fa-house-user"></i> Anasayfa</a></li>
         </ul>
     </nav>
     <div class="slidernav">
@@ -108,6 +108,11 @@
         </form>
     </div>
     <script>
+
+        
+        $(window).on("load", function() {
+            $('.loading').fadeOut(800);
+        });
         window.onscroll = function() {
         scrollfunc();
         };

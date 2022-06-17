@@ -134,6 +134,11 @@
         </form>
     </div>
 <script>
+
+        
+        $(window).on("load", function() {
+            $('.loading').fadeOut(800);
+        });
         let slider = document.querySelector(".slidernav");
         window.onscroll = function() {
         scrollfunc();
