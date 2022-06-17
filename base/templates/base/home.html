@@ -6,6 +6,7 @@
 </head>
 
 <body>
+    <div class="loading" style="width: 100vw;height:100%;background-color: rgba(133, 133, 133, 0.356);z-index: 100;position: fixed;"><h4 class="text-center pt-5">Yükleniyor...</h4></div>
     {% for message in messages %}
     <div class="message alert alert-success text-center" style="width: 60%;">{{message}}</div>
     {% endfor %}
@@ -84,7 +85,7 @@
                 {% endif %}
         </ul>
     </nav>
-
+    
 
     <div class="nature">
         <span>
@@ -171,7 +172,14 @@
                 {% endif %}
         </div>
     </form>
+
+
+
     <script>
+        $(window).on("load", function() {
+            $('.loading').fadeOut(800);
+        });
+
         let height=window.screen.height
         function kayit(){
             window.scrollTo(0,height);
@@ -197,10 +205,12 @@
                 window.scrollTo(0, 0);
             });
 }
-let filtre = document.querySelector("#filtre");
-let filtretablo = document.querySelector(".filtretablo");
-filtre.addEventListener("click", () => {
-    filtretablo.classList.toggle("displayed");
-});
+        let filtre = document.querySelector("#filtre");
+        let filtretablo = document.querySelector(".filtretablo");
+        filtre.addEventListener("click", () => {
+            filtretablo.classList.toggle("displayed");
+        });
+    
+        
     </script>
     {% endblock content %}

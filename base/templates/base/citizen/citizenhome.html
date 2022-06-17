@@ -17,6 +17,7 @@
 
 
 <body>
+    <div class="loading" style="width: 100vw;height:100%;background-color: rgba(131, 131, 131, 0.699);z-index: 100;position: fixed;"><h4 class="text-center text-light pt-5">Yükleniyor...</h4></div>
     {% for message in messages %}
     <div class="message alert alert-success text-center" style="width: 60%;">{{message}}</div>
     {% endfor %}
@@ -169,6 +170,13 @@
     {% endif %}
 
     <script>
+
+        
+        $(window).on("load", function() {
+            $('.loading').fadeOut(800);
+        });
+
+
         let height=window.screen.height
         function duyuru(){
             window.scrollTo(0,height);

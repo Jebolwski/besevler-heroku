@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    
+
     <nav>
         <ul class="ul d-flex justify-content-end text-center">
             <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;">Hoşgeldiniz</p>
@@ -15,7 +15,7 @@
     </nav>
     <div class="scroll-nav">
         <ul class="ul d-flex justify-content-end text-center">
-            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;"><img src="{% static 'mahresimler/logo.png' %}" style="width: 18px;height: 18px;margin-top: 18%;"/></p>
+            <p class="welcomeuser" style="position: absolute;left: 30px;top: 5px;font-size: 18px;color: white;"><img src="{% static 'mahresimler/logo.png' %}" style="width: 18px;height: 18px;margin-top: 18%;" /></p>
             <li class="li">
                 <i class="fas fa-arrow-up" style="cursor: pointer;display: block;visibility: visible;margin-top: 6px;"></i>
             </li>
@@ -27,11 +27,11 @@
             {% if request.user.is_anonymous %}
             <li><a href="
                     {% url 'citizen-home' %}
-                    " >Anasayfa</a></li>
-        <li><a href="{% url 'citizen-contact' %}" >İletişim</a></li>
-            <li><a href="{% url 'onerivesikayet' %}" >Öneri ve Şikayet</a></li>
-            <li><a href="{% url 'duyurular' %}" >Duyurular</a></li>
-            <li><a href="{% url 'register' %}" >Kayıt Ol</a></li>
+                    ">Anasayfa</a></li>
+            <li><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+            <li><a href="{% url 'duyurular' %}">Duyurular</a></li>
+            <li><a href="{% url 'register' %}">Kayıt Ol</a></li>
             <li><a href="{% url 'login' %}">Giriş Yap</a></li>
             {% else %}
             <li><a href="
@@ -40,10 +40,10 @@
                     {% else %}
                     {% url 'citizen-home' %}
                     {% endif %}
-                    " >Anasayfa</a></li>
-        <li><a href="{% url 'citizen-contact' %}" >İletişim</a></li>
-            <li><a href="{% url 'onerivesikayet' %}" >Öneri ve Şikayet</a></li>
-            <li><a href="{% url 'duyurular' %}" >Duyurular</a></li>
+                    ">Anasayfa</a></li>
+            <li><a href="{% url 'citizen-contact' %}">İletişim</a></li>
+            <li><a href="{% url 'onerivesikayet' %}">Öneri ve Şikayet</a></li>
+            <li><a href="{% url 'duyurular' %}">Duyurular</a></li>
             <li><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
             title="Ayarlar" ></i></a></li>
             <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" title="Çıkış Yap"
@@ -54,19 +54,19 @@
     <form method="POST">
         <div class="box">
             {% csrf_token %}
-            
-                <h4 class="pt-4 text-center">Beşevler Mahallesi Muhtarlığı</h4>
+
+            <h4 class="pt-4 text-center">Beşevler Mahallesi Muhtarlığı</h4>
             <div class="row col-5 mt-5" style="margin: 0 auto">
                 <label for="ad" class="text-center h5">Kullanıcı Adı</label>
                 <label><input type="text" name="username" class="form-control" ></label>
             </div>
-            <div class="row col-5 mt-5" style="margin: 0 auto" >
+            <div class="row col-5 mt-5" style="margin: 0 auto">
                 <label for="şifre" class="text-center h5">Şifre</label>
                 <label><input type="password" name="password" class="form-control" ></label>
             </div>
 
             {% for message in messages %}
-                <div class="alert alert-warning alert-dismissible fade show mt-5" role="alert" style="width: 60%;margin-left: 50%;transform: translateX(-50%);">{{message}}</div>
+            <div class="alert alert-warning alert-dismissible fade show mt-5" role="alert" style="width: 60%;margin-left: 50%;transform: translateX(-50%);">{{message}}</div>
             {% endfor %}
 
             <input type="submit" value="Giriş Yap" class="login-button btn btn-outline-dark mt-4">
