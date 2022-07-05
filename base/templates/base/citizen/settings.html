@@ -51,7 +51,11 @@
                     {% url 'citizen-home' %}
                     {% endif %}
                     " >Anasayfa</a></li>
+            {% if request.user.is_superuser %}
             <li class="li"><a href="{% url 'inbox-admin' %}">Gelen Kutusu</a></li>
+            {% else %}
+            <li class="li"><a href="{% url 'inbox-citizen' request.user.id %}">Gelen Kutusu</a></li>
+            {% endif %}
             <li class="li"><a href="{% url 'duyurular' %}">Duyurular</a></li>
             <li class="li"><a href="{% url 'citizen-contact' %}">İletişim</a></li>
             <li class="li"><a href="{% url 'citizen-settings' %}"><i class="fas fa-cogs" alt="Ayarlar"
