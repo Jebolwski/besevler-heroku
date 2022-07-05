@@ -1,2 +1,2 @@
-web: gunicorn base.wsgi --log-file -
+web: gunicorn besevlermuhtarligi.wsgi --log-file -
 
