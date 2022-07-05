@@ -78,12 +78,8 @@ WSGI_APPLICATION = 'besevlermuhtarligi.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd8jih3a8v51c2s',
-        'USER': 'pfdwdqoevhkyza',
-        'PASSWORD': 'a6a13e3fa44e2200c654ab08750d149114ad3954796f922a50a4271eac890b9e',
-        'HOST':'ec2-52-19-164-214.eu-west-1.compute.amazonaws.com',
-        'PORT':5432,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
