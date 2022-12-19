@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'd8jih3a8v51c2s',
         'USER': 'pfdwdqoevhkyza',
-        'PASSWORD': 'a6a13e3fa44e2200c654ab08750d149114ad3954796f922a50a4271eac890b9e',
+        'PASSWORD': '######',
         'HOST':'ec2-52-19-164-214.eu-west-1.compute.amazonaws.com',
         'PORT':5432,
     }
@@ -143,4 +143,4 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "besevler.mah.muh@gmail.com"
-EMAIL_HOST_PASSWORD = 'kvaimyrpzmdhqwwl'
+EMAIL_HOST_PASSWORD = '####'
